@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-namespace Project.Utilities
+namespace Utilities
 {
     public class Singleton : MonoBehaviour
     {

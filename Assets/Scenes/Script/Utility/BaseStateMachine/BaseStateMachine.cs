@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+namespace Utilities
+{
 public abstract class BaseStateMachine : MonoBehaviour
 {
     protected IState currentState;
@@ -24,4 +26,5 @@ public abstract class BaseStateMachine : MonoBehaviour
     {
         currentState?.OnFixedUpdate();
     }
+}
 }
