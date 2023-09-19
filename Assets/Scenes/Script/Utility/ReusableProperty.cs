@@ -2,15 +2,22 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+namespace Utilities
+{
 public class ReusableProperty
 {
-    public Rigidbody2D m_RigidBody2D;
-    public Collider2D m_Collider2D;
-    public SpriteRenderer spriteRenderer;
-    public Animator animator;
+    public Rigidbody2D m_rigidBody2D;
+    public Collider2D m_collider2D;
+    public SpriteRenderer m_spriteRenderer;
+    public Animator m_animator;
 
-    void Init(GameObject GO)
+    public void Init(GameObject GO)
     {
-        
+        m_rigidBody2D = GO.GetComponent<Rigidbody2D>();
+        m_collider2D = GO.GetComponent<Collider2D>();
+        m_spriteRenderer = GO.GetComponent<SpriteRenderer>();
+        m_animator = GO.GetComponent<Animator>();
+
     }
+}
 }
