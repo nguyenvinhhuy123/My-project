@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Utilities
 {
-public abstract class BaseStateMachine : MonoBehaviour
+public abstract class BaseStateMachine
 {
     protected IState currentState;
     

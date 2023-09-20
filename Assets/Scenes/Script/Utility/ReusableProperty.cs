@@ -11,13 +11,12 @@ public class ReusableProperty
     public SpriteRenderer m_spriteRenderer;
     public Animator m_animator;
 
-    public void Init(GameObject GO)
+    public ReusableProperty(GameObject GO)
     {
         m_rigidBody2D = GO.GetComponent<Rigidbody2D>();
         m_collider2D = GO.GetComponent<Collider2D>();
         m_spriteRenderer = GO.GetComponent<SpriteRenderer>();
         m_animator = GO.GetComponent<Animator>();
-
     }
 }
 }
