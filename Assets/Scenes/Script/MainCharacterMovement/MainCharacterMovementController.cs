@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using Utilities;
 
 public class MainCharacterMovementController : MonoBehaviour
@@ -8,7 +9,6 @@ public class MainCharacterMovementController : MonoBehaviour
     [SerializeField] private MainCharacterData m_data;
     public MainCharacterData Data {get {return m_data;} }
     public ReusableProperty _reusableProperty {get; private set;}
-
     private MainCharacterMovementStateMachine _stateMachine;
 
     // Start is called before the first frame update
@@ -26,5 +26,9 @@ public class MainCharacterMovementController : MonoBehaviour
     void Update()
     {
         
+    }
+    public void OnMovement(InputAction.CallbackContext context)
+    {
+        Debug.Log("lol move!!!");
     }
 }
