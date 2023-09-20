@@ -79,6 +79,6 @@ public class BaseMovementState : IState
     }
     public virtual void PlayAnimation()
     {
-        _machine._reusableProperty.m_animation.Play(ANIMATION_PARAM)
+        _machine._reusableProperty.m_animation.Play(ANIMATION_PARAM);
     }
 }
