@@ -137,6 +137,7 @@ GameObject:
   - component: {fileID: 54928909}
   - component: {fileID: 54928910}
   - component: {fileID: 54928911}
+  - component: {fileID: 54928912}
   m_Layer: 0
   m_Name: MainCharacter
   m_TagString: Player
@@ -291,6 +292,48 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_data: {fileID: 11400000, guid: 3de897859be607a439459df63c357d71, type: 2}
+--- !u!114 &54928912
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 54928905}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Actions: {fileID: -944628639613478452, guid: d132c48f7f4e6444689819a98818c198, type: 3}
+  m_NotificationBehavior: 0
+  m_UIInputModule: {fileID: 0}
+  m_DeviceLostEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_DeviceRegainedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ControlsChangedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ActionEvents:
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: d75901cf-b447-4155-a46f-e14104f22e4a
+    m_ActionName: PlayerActionMap/Movement[/Keyboard/a,/Keyboard/d,/Keyboard/leftArrow,/Keyboard/rightArrow]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 028d25e5-0fdb-4b4f-a313-deedb1e631f9
+    m_ActionName: PlayerActionMap/Jump[/Keyboard/space]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 91f5b73e-298b-418b-a878-d10fc5efe41c
+    m_ActionName: PlayerActionMap/Fast Fall[/Keyboard/s]
+  m_NeverAutoSwitchControlSchemes: 0
+  m_DefaultControlScheme: 
+  m_DefaultActionMap: PlayerActionMap
+  m_SplitScreenIndex: -1
+  m_Camera: {fileID: 1921411508}
 --- !u!1 &199782028
 GameObject:
   m_ObjectHideFlags: 0

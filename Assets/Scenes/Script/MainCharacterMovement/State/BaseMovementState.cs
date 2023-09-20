@@ -17,7 +17,7 @@ public class BaseMovementState : IState
     }
     public virtual void OnEnter()
     {
-
+        PlayAnimation();
     }   
     public virtual void OnExit()
     {
@@ -62,7 +62,7 @@ public class BaseMovementState : IState
             if (CastHit[0])
             {
                 _machine._sharedData.WallContactDirection = Vector2.left;
-                _machine._sharedData.LastOnGroundTime = _data.m_coyoteTime;
+                _machine._sharedData.LastOnWallTime = _data.m_coyoteTime;
                 return true;
             }
         }
@@ -71,7 +71,7 @@ public class BaseMovementState : IState
             if (CastHit[0])
             {
                 _machine._sharedData.WallContactDirection = Vector2.right;
-                _machine._sharedData.LastOnGroundTime = _data.m_coyoteTime;
+                _machine._sharedData.LastOnWallTime = _data.m_coyoteTime;
                 return true;
             }
         }
