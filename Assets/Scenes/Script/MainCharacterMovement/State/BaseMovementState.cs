@@ -2,10 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Utilities;
-
+using UnityEngine.InputSystem;
 public class BaseMovementState : IState
 {
-    protected static string ANIMATION_PARAM;
+    protected string ANIMATION_PARAM;
     protected MainCharacterMovementStateMachine _machine;
     protected readonly MainCharacterData _data;
     protected ReusableProperty _reusableProperty;
@@ -18,6 +18,7 @@ public class BaseMovementState : IState
     public virtual void OnEnter()
     {
         PlayAnimation();
+        Debug.Log(GetType().Name);
     }   
     public virtual void OnExit()
     {
@@ -29,13 +30,12 @@ public class BaseMovementState : IState
     }
     public virtual void OnUpdate()
     {
-
+        SpriteFlip();
     }
     public virtual void OnFixedUpdate()
     {
-        OnGround();
-        OnWall();
-        Debug.Log(_machine._sharedData.LastOnGroundTime = _data.m_coyoteTime);
+        OnMovement();
+        _machine._sharedData.LastOnGroundTime = _data.m_coyoteTime;
     }
     protected bool OnGround()
     {
@@ -80,5 +80,27 @@ public class BaseMovementState : IState
     public virtual void PlayAnimation()
     {
         _machine._reusableProperty.m_animator.Play(ANIMATION_PARAM);
+    }
+    public virtual void OnMovement()
+    {
+        
+    }
+    protected void SpriteFlip()
+    {
+        if (_machine._reusableProperty.m_rigidBody2D.velocity.x == 0f) return;
+        if (_machine._reusableProperty.m_rigidBody2D.velocity.x > 0f ) 
+        {
+            _machine._reusableProperty.m_spriteRenderer.flipX = false;
+            return;
+        }
+        if (_machine._reusableProperty.m_rigidBody2D.velocity.x < 0f ) 
+        {
+            _machine._reusableProperty.m_spriteRenderer.flipX = true;
+            return;
+        }
+    }
+    protected void SetGravityScale(float scale)
+    {
+        _machine._reusableProperty.m_rigidBody2D.gravityScale = scale;
     }
 }

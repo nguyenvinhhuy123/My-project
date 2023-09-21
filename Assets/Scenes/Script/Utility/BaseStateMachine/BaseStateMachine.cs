@@ -8,21 +8,21 @@ public abstract class BaseStateMachine
 {
     protected IState currentState;
     
-    void OnChangeState(IState nextState)
+    public void OnChangeState(IState nextState)
     {
         currentState?.OnExit();
         currentState = nextState;
         currentState?.OnEnter();
     }
-    void OnInputHandle()
+    public void OnInputHandle()
     {
         currentState?.OnInputHandle();
     }
-    void OnUpdate()
+    public void OnUpdate()
     {
         currentState?.OnUpdate();
     }
-    void OnFixedUpdate()
+    public void OnFixedUpdate()
     {
         currentState?.OnFixedUpdate();
     }

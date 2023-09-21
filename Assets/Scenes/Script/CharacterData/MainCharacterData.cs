@@ -7,9 +7,6 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "My project/MainCharacterData")]
 public class MainCharacterData : ScriptableObject
 {
-    [Header("Default data")]
-    public int m_maxHealth;
-    public int m_damage;
     [Header("Gravity manipulation data")]
     [HideInInspector] public float m_gravityStrength;
     [HideInInspector] public float m_gravityScale;

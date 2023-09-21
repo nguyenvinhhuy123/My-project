@@ -19,16 +19,38 @@ public class MainCharacterMovementController : MonoBehaviour
     }
     void Start()
     {
-        
+        _stateMachine.OnChangeState(_stateMachine.m_idle);
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        _stateMachine.OnUpdate();
+    }
+    void FixedUpdate()
+    {
+        _stateMachine.OnFixedUpdate();
     }
     public void OnMovement(InputAction.CallbackContext context)
     {
-        Debug.Log("lol move!!!");
+        Debug.Log(context.ReadValue<float>());
+        _stateMachine._sharedData.MovementInput = context.ReadValue<float>();
     }
+    public void OnJump(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            Debug.Log(context);
+            _stateMachine._sharedData.OnJumpPressBufferTime = m_data.m_jumpInputBufferTime;
+        }
+    }
+    public void OnFastFall(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            Debug.Log(context);
+            _stateMachine._sharedData.IsFastFallPress = context.performed;
+        }
+    }
+
 }
