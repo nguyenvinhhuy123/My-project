@@ -12,15 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d419969185890e74982ce348d6b13e91, type: 3}
   m_Name: MainCharacterData
   m_EditorClassIdentifier: 
-  m_maxHealth: 100
-  m_damage: 20
   m_gravityStrength: -1.5
   m_gravityScale: 0.1529052
-  m_runMaxSpeed: 7
-  m_runAccel: 2.5
-  m_runDeccel: 2.5
-  m_realAccel: 17.857143
-  m_realDeccel: 17.857143
+  HyperSpeedDeccelMultiplier: 0.2
+  m_runMaxSpeed: 5
+  m_runAccel: 5
+  m_runDeccel: 1.5
+  m_realAccel: 50
+  m_realDeccel: 15
   m_jumpHeight: 12
   m_jumpTimeToApex: 4
   m_jumpForce: 6
@@ -30,18 +29,18 @@ MonoBehaviour:
   m_wallJumpTimeToApex: 5
   m_wallJumpForce: 0
   m_wallJumpInitializeSidedForce: 5
-  m_wallJumpMovementConstraintTime: 0
-  m_wallJumpMovementConstraintPercentile: 0
+  m_wallJumpMovementConstraintTime: 0.214
+  m_wallJumpMovementConstraintPercentile: 1
   m_doubleJumpForce: 0
-  m_jumpHangGravityMultiplier: 5.8
-  m_hangTimeThreshold: 0.09
-  m_maxFallSpeed: 0
-  m_fallAccel: 0
-  m_fallHangThreshold: 0
-  m_fallHangGravityMultiplier: 0
-  m_fallGravityMultiplier: 0
-  m_wallSlidingSpeed: 0
+  m_jumpHangGravityMultiplier: 0.411
+  m_hangTimeThreshold: 0.126
+  m_maxFallSpeed: 18
+  m_fallAccel: 3.6
+  m_fallHangThreshold: 0.246
+  m_fallHangGravityMultiplier: 0.75
+  m_fallGravityMultiplier: 3.79
+  m_wallSlidingSpeed: 3
   m_wallSlidingGravityMultiplier: 0
-  m_wallSlidingAccel: 0
-  m_coyoteTime: 0
-  m_jumpInputBufferTime: 0
+  m_wallSlidingAccel: 2.5
+  m_coyoteTime: 0.179
+  m_jumpInputBufferTime: 0.285

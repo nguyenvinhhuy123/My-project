@@ -11,6 +11,7 @@ public class MainCharacterData : ScriptableObject
     [HideInInspector] public float m_gravityStrength;
     [HideInInspector] public float m_gravityScale;
     [Header("Running related data")]
+    [Range(0f, 1f)]public float HyperSpeedDeccelMultiplier;
     public float m_runMaxSpeed;
     public float m_runAccel;
     public float m_runDeccel;
@@ -38,8 +39,8 @@ public class MainCharacterData : ScriptableObject
     [Header("Falling related data")]
     public float m_maxFallSpeed;
     public float m_fallAccel;
-    public float m_fallHangThreshold;
-    public float m_fallHangGravityMultiplier;
+    [Range(0f,0.5f)]public float m_fallHangThreshold;
+    [Range(0f,1f)]public float m_fallHangGravityMultiplier;
     public float m_fallGravityMultiplier;
     [Header("Wall Sliding related data")]
     public float m_wallSlidingSpeed;
@@ -55,8 +56,8 @@ public class MainCharacterData : ScriptableObject
     /// </summary>
     void OnValidate()
     {
-        m_runAccel = Mathf.Clamp(m_runAccel, 0.01f, m_runMaxSpeed);
-        m_runDeccel = Mathf.Clamp(m_runDeccel, 0.01f, m_runMaxSpeed);
+        m_runAccel = Mathf.Clamp(m_runAccel, 0.01f, m_runMaxSpeed*10);
+        m_runDeccel = Mathf.Clamp(m_runDeccel, 0.01f, m_runMaxSpeed*10);
         m_fallAccel = Mathf.Clamp(m_fallAccel,0.01f,m_maxFallSpeed);
 
         m_gravityStrength = -(2*m_jumpHeight) / (m_jumpTimeToApex* m_jumpTimeToApex);

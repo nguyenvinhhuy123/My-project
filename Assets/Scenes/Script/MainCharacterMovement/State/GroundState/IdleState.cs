@@ -37,5 +37,6 @@ public class IdleState : GroundState
             _machine.OnChangeState(_machine.m_run);
             return;
         }
+        base.OnMovement();
     }
 }
