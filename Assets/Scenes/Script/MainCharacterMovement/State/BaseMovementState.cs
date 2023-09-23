@@ -19,11 +19,11 @@ public class BaseMovementState : IState
     public virtual void OnEnter()
     {
         PlayAnimation();
-        Debug.Log(GetType().Name);
+        Debug.Log(GetType().Name + " entered");
     }   
     public virtual void OnExit()
     {
-
+        Debug.Log(GetType().Name + " exited");
     }
     public virtual void OnInputHandle()
     {
@@ -32,11 +32,12 @@ public class BaseMovementState : IState
     public virtual void OnUpdate()
     {
         SpriteFlip();
+        TimerChange();
+        StateCondition();
     }
     public virtual void OnFixedUpdate()
     {
         OnMovement();
-        _machine._sharedData.LastOnGroundTime = _data.m_coyoteTime;
     }
     protected bool OnGround()
     {
@@ -44,7 +45,7 @@ public class BaseMovementState : IState
         ContactFilter2D GroundFilter = new ContactFilter2D();
         LayerMask GroundLayer = LayerMask.GetMask("Ground");
         GroundFilter.SetLayerMask(GroundLayer);
-        _reusableProperty.m_collider2D.Cast(Vector2.down, GroundFilter, CastHit, 0.05f);
+        _reusableProperty.m_collider2D.Cast(Vector2.down, GroundFilter, CastHit, 0.01f);
         if (CastHit[0])
         {
             _machine._sharedData.LastOnGroundTime = _data.m_coyoteTime;
@@ -76,6 +77,7 @@ public class BaseMovementState : IState
                 return true;
             }
         }
+        _machine._sharedData.WallContactDirection = Vector2.zero;
         return false;
     }
     public virtual void PlayAnimation()
@@ -107,7 +109,6 @@ public class BaseMovementState : IState
 
         _machine._reusableProperty.m_rigidBody2D.AddForce(realForceToAdd*Vector2.right, ForceMode2D.Force);
     }
-    
     protected void SpriteFlip()
     {
         if (_machine._reusableProperty.m_rigidBody2D.velocity.x == 0f) return;
@@ -122,9 +123,18 @@ public class BaseMovementState : IState
             return;
         }
     }
-    
     protected void SetGravityScale(float scale)
     {
         _machine._reusableProperty.m_rigidBody2D.gravityScale = scale;
+    }
+    public virtual void StateCondition()
+    {
+
+    }
+    protected void TimerChange()
+    {
+        _machine._sharedData.LastOnGroundTime -= Time.deltaTime;   
+        _machine._sharedData.LastOnWallTime -= Time.deltaTime;   
+        _machine._sharedData.OnJumpPressBufferTime -= Time.deltaTime;   
     }
 }

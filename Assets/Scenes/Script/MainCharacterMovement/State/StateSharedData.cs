@@ -5,15 +5,8 @@ using UnityEngine;
 public class StateSharedData
 {
     public float MovementInput {get;set;}
-
     public bool IsFastFallPress {get; set;}
-
-    public float XAxisAccel {get; set;}
-
-    public float YAxisAccel {get; set;}
-
     public bool CanDoubleJump {get;set;}
-
     public Vector2 WallContactDirection {get; set;}
     
     #region Timer System

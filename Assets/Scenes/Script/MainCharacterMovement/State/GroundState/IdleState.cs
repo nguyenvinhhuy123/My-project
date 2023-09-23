@@ -30,13 +30,15 @@ public class IdleState : GroundState
     {
         base.OnFixedUpdate();
     }
-    public override void OnMovement()
+
+    public override void StateCondition()
     {
         if (_machine._sharedData.MovementInput != 0f)
         {
             _machine.OnChangeState(_machine.m_run);
             return;
         }
-        base.OnMovement();
+        base.StateCondition();
+        
     }
 }

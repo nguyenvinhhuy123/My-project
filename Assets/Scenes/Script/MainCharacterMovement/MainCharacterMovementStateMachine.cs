@@ -13,6 +13,8 @@ public class MainCharacterMovementStateMachine : BaseStateMachine
     #region State Register
     public IdleState m_idle;
     public RunState m_run;
+    public JumpState m_jump;
+    public FallState m_fall;
     #endregion
     public MainCharacterMovementStateMachine(MainCharacterMovementController controller)
     {
@@ -29,5 +31,7 @@ public class MainCharacterMovementStateMachine : BaseStateMachine
     {
         m_idle = new IdleState(this);
         m_run = new RunState(this);
+        m_jump = new JumpState(this);
+        m_fall = new FallState(this);
     }
 }

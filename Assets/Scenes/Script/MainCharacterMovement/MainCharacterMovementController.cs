@@ -46,10 +46,21 @@ public class MainCharacterMovementController : MonoBehaviour
     }
     public void OnFastFall(InputAction.CallbackContext context)
     {
+        //*This ensured that IsFastFallPress is reset to false after events is performed,
+        // *not after button is released
+        //*This can later be change to a trigger event
+        //*Or to make sure everything work as expected, Build a unique PlayerInput Component and InputEventSystem 
+        //*To Include in State Machine
+
+        //? TLDR Subject to change
+        if (context.started)
+        {
+            _stateMachine._sharedData.IsFastFallPress = context.started;
+        }
         if (context.performed)
         {
             Debug.Log(context);
-            _stateMachine._sharedData.IsFastFallPress = context.performed;
+            _stateMachine._sharedData.IsFastFallPress = false;
         }
     }
 

@@ -12,6 +12,7 @@ public class GroundState : BaseMovementState
     public override void OnEnter()
     {
         base.OnEnter();
+        _machine._sharedData.CanDoubleJump = true;
     }   
     public override void OnExit()
     {
@@ -24,9 +25,19 @@ public class GroundState : BaseMovementState
     public override void OnUpdate()
     {
         base.OnUpdate();
+        _machine._sharedData.LastOnGroundTime = _data.m_coyoteTime;
     }
     public override void OnMovement()
     {
         base.OnMovement();
+    }
+    public override void StateCondition()
+    {
+        if (_machine._sharedData.OnJumpPressBufferTime > 0f)
+        {
+            _machine.OnChangeState(_machine.m_jump);
+            return;
+        }
+        base.StateCondition();
     }
 }

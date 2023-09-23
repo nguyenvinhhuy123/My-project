@@ -10,6 +10,8 @@ public abstract class BaseStateMachine
     
     public void OnChangeState(IState nextState)
     {
+        if (currentState == nextState) return;
+        //A state should change to itself
         currentState?.OnExit();
         currentState = nextState;
         currentState?.OnEnter();

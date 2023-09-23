@@ -28,11 +28,15 @@ public class RunState : GroundState
     }
     public override void OnMovement()
     {
-        if (_machine._sharedData.MovementInput == 0f)
+        base.OnMovement();
+    }
+    public override void StateCondition()
+    {
+        if (_machine._reusableProperty.m_rigidBody2D.velocity.x == 0f)
         {
             _machine.OnChangeState(_machine.m_idle);
             return;
         }
-        base.OnMovement();
+        base.StateCondition();
     }
 }
