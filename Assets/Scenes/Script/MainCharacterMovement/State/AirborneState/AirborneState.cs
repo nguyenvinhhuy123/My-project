@@ -32,7 +32,7 @@ public class AirborneState : BaseMovementState
         if (_machine._sharedData.IsFastFallPress)
         {
             //TODO: Change to fast fall state
-            //*_machine.OnChangeState(m_fastFall);
+            _machine.OnChangeState(_machine.m_fastFall);
             return;
         }
         if (_machine._sharedData.CanDoubleJump

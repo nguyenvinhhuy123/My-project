@@ -26,6 +26,7 @@ public class MainCharacterMovementController : MonoBehaviour
     void Update()
     {
         _stateMachine.OnUpdate();
+        _stateMachine.OnInputHandle();
     }
     void FixedUpdate()
     {
@@ -57,11 +58,11 @@ public class MainCharacterMovementController : MonoBehaviour
         {
             _stateMachine._sharedData.IsFastFallPress = context.started;
         }
-        if (context.performed)
-        {
-            Debug.Log(context);
-            _stateMachine._sharedData.IsFastFallPress = false;
-        }
+        // if (context.performed)
+        // {
+        //     Debug.Log(context);
+        //     _stateMachine._sharedData.IsFastFallPress = false;
+        // }
     }
 
 }

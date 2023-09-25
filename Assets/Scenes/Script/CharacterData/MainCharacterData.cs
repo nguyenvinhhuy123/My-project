@@ -11,6 +11,12 @@ public class MainCharacterData : ScriptableObject
     [HideInInspector] public float m_gravityStrength;
     [HideInInspector] public float m_gravityScale;
 
+    [HideInInspector] public float m_doubleJumpGravityStrength;
+    [HideInInspector] public float m_doubleJumpGravityScale;
+
+    [HideInInspector] public float m_wallJumpGravityStrength;
+    [HideInInspector] public float m_wallJumpGravityScale;
+
     [Header("Running related data")]
     [Range(0f, 1f)]public float HyperSpeedDeccelMultiplier;
     public float m_runMaxSpeed;
@@ -19,6 +25,7 @@ public class MainCharacterData : ScriptableObject
     [HideInInspector] public float m_realAccel;
     [HideInInspector] public float m_realDeccel;
     [Header("Jumping related data")]
+    public float m_hangTimeThreshold;
     public float m_jumpHeight;
     public float m_jumpTimeToApex;
     [HideInInspector] public float m_jumpForce;
@@ -38,8 +45,8 @@ public class MainCharacterData : ScriptableObject
     [Range (0f, 1f)]public float m_jumpHangGravityMultiplier;
     [Header("Fast fall related data")]
     public float m_maxFastFallSpeed;
-    public float m_FastFallGravityMultiplier;
-    public float m_hangTimeThreshold;
+    public float m_fastFallGravityMultiplier;
+
     [Header("Falling related data")]
     public float m_maxFallSpeed;
     public float m_fallHangThreshold;
@@ -65,17 +72,21 @@ public class MainCharacterData : ScriptableObject
         m_gravityStrength = -(2*m_jumpHeight) / (m_jumpTimeToApex* m_jumpTimeToApex);
         m_gravityScale = m_gravityStrength / Physics2D.gravity.y;
 
+        m_doubleJumpGravityStrength = -(2*m_doubleJumpHeight) / (m_doubleJumpTimeToApex* m_doubleJumpTimeToApex);
+        m_doubleJumpGravityScale = m_doubleJumpGravityStrength / Physics2D.gravity.y;
+
+        m_wallJumpGravityStrength = -(2*m_wallJumpHeight) / (m_wallJumpTimeToApex* m_wallJumpTimeToApex);
+        m_wallJumpGravityScale = m_wallJumpGravityStrength / Physics2D.gravity.y;
+
         //Calculate are run acceleration & deceleration forces using formula: amount = ((1 / Time.fixedDeltaTime) * acceleration) / runMaxSpeed
 		m_realAccel = (1/Time.fixedDeltaTime * m_runAccel) / m_runMaxSpeed;
 		m_realDeccel = (1/Time.fixedDeltaTime * m_runDeccel) / m_runMaxSpeed;
 
         m_jumpForce = Mathf.Abs(m_gravityStrength)*m_jumpTimeToApex;
 
-        m_doubleJumpForce = Mathf.Abs((2*m_doubleJumpHeight)/(m_doubleJumpTimeToApex));
+        m_doubleJumpForce = Mathf.Abs(m_doubleJumpGravityStrength)*m_doubleJumpTimeToApex;
 
-        m_wallJumpForce = Mathf.Abs((2*m_wallJumpHeight)/(m_wallJumpTimeToApex));
+        m_wallJumpForce = Mathf.Abs(m_wallJumpGravityStrength)*m_wallJumpTimeToApex;
 
-        Debug.Log(m_gravityScale);
-        Debug.Log(m_jumpForce + " and " + m_doubleJumpForce + " and " + m_wallJumpForce);
     }
 }

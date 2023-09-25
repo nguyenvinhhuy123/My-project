@@ -11,6 +11,7 @@ public class GroundState : BaseMovementState
     }
     public override void OnEnter()
     {
+        SetGravityScale(_machine._data.m_gravityScale);
         base.OnEnter();
         _machine._sharedData.CanDoubleJump = true;
     }   

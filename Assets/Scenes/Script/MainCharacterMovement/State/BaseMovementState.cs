@@ -27,7 +27,7 @@ public class BaseMovementState : IState
     }
     public virtual void OnInputHandle()
     {
-
+        
     }
     public virtual void OnUpdate()
     {
@@ -45,7 +45,7 @@ public class BaseMovementState : IState
         ContactFilter2D GroundFilter = new ContactFilter2D();
         LayerMask GroundLayer = LayerMask.GetMask("Ground");
         GroundFilter.SetLayerMask(GroundLayer);
-        _reusableProperty.m_collider2D.Cast(Vector2.down, GroundFilter, CastHit, 0.01f);
+        _reusableProperty.m_collider2D.Cast(Vector2.down, GroundFilter, CastHit, 0.015f);
         if (CastHit[0])
         {
             _machine._sharedData.LastOnGroundTime = _data.m_coyoteTime;
