@@ -33,10 +33,10 @@ public class BaseMovementState : IState
     {
         SpriteFlip();
         TimerChange();
-        StateCondition();
     }
     public virtual void OnFixedUpdate()
     {
+        StateCondition();
         OnMovement();
     }
     protected bool OnGround()

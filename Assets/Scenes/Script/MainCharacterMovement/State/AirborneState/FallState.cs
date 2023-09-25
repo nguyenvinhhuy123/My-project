@@ -41,16 +41,18 @@ public class FallState : AirborneState
     {
         if (OnGround())
         {
-            if (_machine._reusableProperty.m_rigidBody2D.velocity.x != 0f)
-            {
-                _machine.OnChangeState(_machine.m_run);
+            _machine.OnChangeState(_machine.m_idle);
                 return;
-            }
-            if (_machine._reusableProperty.m_rigidBody2D.velocity.x == 0f)
-            {
-                _machine.OnChangeState(_machine.m_idle);
-                return;
-            }
+            // if (_machine._reusableProperty.m_rigidBody2D.velocity.x == 0f)
+            // {
+            //     _machine.OnChangeState(_machine.m_idle);
+            //     return;
+            // }
+            // if (_machine._reusableProperty.m_rigidBody2D.velocity.x != 0f)
+            // {
+            //     _machine.OnChangeState(_machine.m_run);
+            //     return;
+            // }
         }
         base.StateCondition();
     }

@@ -15,6 +15,7 @@ public class MainCharacterMovementStateMachine : BaseStateMachine
     public RunState m_run;
     public JumpState m_jump;
     public FallState m_fall;
+    public DoubleJumpState m_doubleJump;
     #endregion
     public MainCharacterMovementStateMachine(MainCharacterMovementController controller)
     {
@@ -33,5 +34,6 @@ public class MainCharacterMovementStateMachine : BaseStateMachine
         m_run = new RunState(this);
         m_jump = new JumpState(this);
         m_fall = new FallState(this);
+        m_doubleJump = new DoubleJumpState(this);
     }
 }

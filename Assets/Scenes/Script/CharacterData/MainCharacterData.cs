@@ -10,6 +10,7 @@ public class MainCharacterData : ScriptableObject
     [Header("Gravity manipulation data")]
     [HideInInspector] public float m_gravityStrength;
     [HideInInspector] public float m_gravityScale;
+
     [Header("Running related data")]
     [Range(0f, 1f)]public float HyperSpeedDeccelMultiplier;
     public float m_runMaxSpeed;
@@ -24,6 +25,8 @@ public class MainCharacterData : ScriptableObject
     [Header("DoubleJumping related data")]
     public float m_doubleJumpHeight;
     public float m_doubleJumpTimeToApex;
+    [HideInInspector]public float m_doubleJumpForce;
+
     [Header("WallJumping related data")]
     public float m_wallJumpHeight;
     public float m_wallJumpTimeToApex;
@@ -32,8 +35,6 @@ public class MainCharacterData : ScriptableObject
     public float m_wallJumpInitializeSidedForce;
     [Range(0f, 1.5f)]public float m_wallJumpMovementConstraintTime;
     [Range(0f, 1f)] public float m_wallJumpMovementConstraintPercentile;
-    [HideInInspector] public float m_doubleJumpForce;
-    [Header("Jump gravity related data")]
     [Range (0f, 1f)]public float m_jumpHangGravityMultiplier;
     [Header("Fast fall related data")]
     public float m_maxFastFallSpeed;
@@ -58,16 +59,23 @@ public class MainCharacterData : ScriptableObject
     /// </summary>
     void OnValidate()
     {
-        m_runAccel = Mathf.Clamp(m_runAccel, 0.01f, m_runMaxSpeed*10);
-        m_runDeccel = Mathf.Clamp(m_runDeccel, 0.01f, m_runMaxSpeed*10);
+        m_runAccel = Mathf.Clamp(m_runAccel, 0.01f, m_runMaxSpeed);
+        m_runDeccel = Mathf.Clamp(m_runDeccel, 0.01f, m_runMaxSpeed);
 
         m_gravityStrength = -(2*m_jumpHeight) / (m_jumpTimeToApex* m_jumpTimeToApex);
         m_gravityScale = m_gravityStrength / Physics2D.gravity.y;
+
         //Calculate are run acceleration & deceleration forces using formula: amount = ((1 / Time.fixedDeltaTime) * acceleration) / runMaxSpeed
 		m_realAccel = (1/Time.fixedDeltaTime * m_runAccel) / m_runMaxSpeed;
 		m_realDeccel = (1/Time.fixedDeltaTime * m_runDeccel) / m_runMaxSpeed;
 
         m_jumpForce = Mathf.Abs(m_gravityStrength)*m_jumpTimeToApex;
 
+        m_doubleJumpForce = Mathf.Abs((2*m_doubleJumpHeight)/(m_doubleJumpTimeToApex));
+
+        m_wallJumpForce = Mathf.Abs((2*m_wallJumpHeight)/(m_wallJumpTimeToApex));
+
+        Debug.Log(m_gravityScale);
+        Debug.Log(m_jumpForce + " and " + m_doubleJumpForce + " and " + m_wallJumpForce);
     }
 }
