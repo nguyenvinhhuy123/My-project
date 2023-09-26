@@ -17,6 +17,7 @@ public class MainCharacterMovementStateMachine : BaseStateMachine
     public FallState m_fall;
     public DoubleJumpState m_doubleJump;
     public FastFallState m_fastFall;
+    public WallSlideState m_wallSlide;
     #endregion
     public MainCharacterMovementStateMachine(MainCharacterMovementController controller)
     {
@@ -37,5 +38,6 @@ public class MainCharacterMovementStateMachine : BaseStateMachine
         m_fall = new FallState(this);
         m_doubleJump = new DoubleJumpState(this);
         m_fastFall = new FastFallState(this);
+        m_wallSlide = new WallSlideState(this);
     }
 }

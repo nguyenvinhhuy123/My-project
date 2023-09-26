@@ -32,7 +32,8 @@ public class RunState : GroundState
     }
     public override void StateCondition()
     {
-        if (_machine._reusableProperty.m_rigidBody2D.velocity.x == 0f)
+        if (_machine._reusableProperty.m_rigidBody2D.velocity.x == 0f
+        && _machine._sharedData.MovementInput == 0)
         {
             _machine.OnChangeState(_machine.m_idle);
             return;

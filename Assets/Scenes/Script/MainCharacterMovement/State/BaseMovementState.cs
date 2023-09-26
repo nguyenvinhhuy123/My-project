@@ -109,7 +109,7 @@ public class BaseMovementState : IState
 
         _machine._reusableProperty.m_rigidBody2D.AddForce(realForceToAdd*Vector2.right, ForceMode2D.Force);
     }
-    protected void SpriteFlip()
+    public virtual void SpriteFlip()
     {
         if (_machine._reusableProperty.m_rigidBody2D.velocity.x == 0f) return;
         if (_machine._reusableProperty.m_rigidBody2D.velocity.x > 0f ) 

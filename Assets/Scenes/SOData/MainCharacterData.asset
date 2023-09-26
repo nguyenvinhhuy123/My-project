@@ -38,14 +38,16 @@ MonoBehaviour:
   m_wallJumpMovementConstraintTime: 0.214
   m_wallJumpMovementConstraintPercentile: 1
   m_jumpHangGravityMultiplier: 0.411
-  m_maxFastFallSpeed: 40
-  m_fastFallGravityMultiplier: 1.75
+  m_maxFastFallSpeed: 35
+  m_fastFallGravityMultiplier: 1.5
   m_maxFallSpeed: 15
   m_fallHangThreshold: 0.15
   m_fallHangGravityMultiplier: 0.75
   m_fallGravityMultiplier: 1.25
   m_wallSlidingSpeed: 3
-  m_wallSlidingGravityMultiplier: 0
+  m_wallSlidingGravityMultiplier: 0.02
   m_wallSlidingAccel: 2.5
   m_coyoteTime: 0.25
   m_jumpInputBufferTime: 0.15
+  m_fastFallVFXObject: {fileID: 3590073949618736141, guid: a26a87372109a77448dc7dc4b9ee766d, type: 3}
+  m_jumpSFXEffect: {fileID: 0}

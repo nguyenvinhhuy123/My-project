@@ -10,6 +10,7 @@ public class FallState : AirborneState
     }
     public override void OnEnter()
     {
+        
         SetGravityScale(_machine._data.m_gravityScale* _machine._data.m_fallHangGravityMultiplier);
         base.OnEnter();
     }   
@@ -51,6 +52,16 @@ public class FallState : AirborneState
                 _machine.OnChangeState(_machine.m_run);
                 return;
             }
+        }
+        if (_machine._sharedData.LastOnWallTime > 0f)
+        {
+            //*machine.OnChangeState(_machine.m_wallJump);
+            return;
+        }
+        if (_machine._sharedData.LastOnGroundTime > 0f)
+        {
+            _machine.OnChangeState(_machine.m_jump);
+            return;
         }
         base.StateCondition();
     }

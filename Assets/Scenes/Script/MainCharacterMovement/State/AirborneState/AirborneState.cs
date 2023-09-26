@@ -40,14 +40,13 @@ public class AirborneState : BaseMovementState
         {
             _machine.OnChangeState(_machine.m_doubleJump);
             return;
-        
         }
         if (OnWall() 
         && Mathf.Sign(_machine._sharedData.MovementInput) 
-        == Mathf.Sign(_machine._reusableProperty.m_rigidBody2D.velocity.x)
+        == Mathf.Sign(_machine._sharedData.WallContactDirection.x)
         )
         {
-            // TODO: Implement state change to wall slide
+            _machine.OnChangeState(_machine.m_wallSlide);
             return;
         }
         base.StateCondition();

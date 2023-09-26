@@ -60,6 +60,15 @@ public class MainCharacterData : ScriptableObject
     [Header("Assisted variables")]
     [Range(0.01f,0.75f)]public float m_coyoteTime;
     [Range(0.01f, 0.75f)]public float m_jumpInputBufferTime;
+
+    [Space(2f)]
+    [Header("VFX Effect")]
+    public GameObject m_fastFallVFXObject;
+
+    [Header("SFX Effect")]
+    public AudioSource m_jumpSFXEffect;
+
+    public 
     /// <summary>
     /// Called when the script is loaded or a value is changed in the
     /// inspector (Called in the editor only).
