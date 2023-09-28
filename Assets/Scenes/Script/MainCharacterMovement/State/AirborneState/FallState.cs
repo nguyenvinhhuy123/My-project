@@ -53,12 +53,12 @@ public class FallState : AirborneState
                 return;
             }
         }
-        if (_machine._sharedData.LastOnWallTime > 0f)
+        if (_machine._sharedData.LastOnWallTime > 0f && _machine._sharedData.OnJumpPressBufferTime > 0f)
         {
-            //*machine.OnChangeState(_machine.m_wallJump);
+            _machine.OnChangeState(_machine.m_wallJump);
             return;
         }
-        if (_machine._sharedData.LastOnGroundTime > 0f)
+        if (_machine._sharedData.LastOnGroundTime > 0f && _machine._sharedData.OnJumpPressBufferTime > 0f)
         {
             _machine.OnChangeState(_machine.m_jump);
             return;

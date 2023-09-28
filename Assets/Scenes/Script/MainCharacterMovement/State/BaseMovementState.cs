@@ -136,5 +136,6 @@ public class BaseMovementState : IState
         _machine._sharedData.LastOnGroundTime -= Time.deltaTime;   
         _machine._sharedData.LastOnWallTime -= Time.deltaTime;   
         _machine._sharedData.OnJumpPressBufferTime -= Time.deltaTime;   
+        _machine._sharedData.OnWallJumpMovementRestrictedTime -= Time.deltaTime;
     }
 }

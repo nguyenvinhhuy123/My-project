@@ -12,6 +12,7 @@ public class WallSlideState : BaseMovementState
     {
         SetGravityScale(_machine._data.m_gravityScale*_machine._data.m_wallSlidingGravityMultiplier);
         base.OnEnter();
+        _machine._sharedData.CanDoubleJump = true;
         OnSlideDown();
     }
     public override void OnUpdate()
@@ -26,12 +27,16 @@ public class WallSlideState : BaseMovementState
     private void OnSlideDown()
     {
         _machine._reusableProperty.m_rigidBody2D.AddForce( _machine._data.m_wallSlidingSpeed*Vector2.down, ForceMode2D.Force);
-        if (_machine._reusableProperty.m_rigidBody2D.velocity.y >  _machine._data.m_wallSlidingSpeed)
-        _machine._reusableProperty.m_rigidBody2D.velocity = new Vector2(0f,  _machine._data.m_wallSlidingSpeed);
+        if (Mathf.Abs(_machine._reusableProperty.m_rigidBody2D.velocity.y) >  _machine._data.m_wallSlidingSpeed)
+        _machine._reusableProperty.m_rigidBody2D.velocity = new Vector2(0f,  -_machine._data.m_wallSlidingSpeed);
     }
     public override void StateCondition()
     {
-        //Debug.Log(_machine._sharedData.MovementInput + " and " +  _machine._sharedData.WallContactDirection.x);
+        if (_machine._sharedData.OnJumpPressBufferTime > 0f)
+        {
+            _machine.OnChangeState(_machine.m_wallJump);
+            return;
+        }
         if (!OnWall())
         {
             Debug.Log($"not on wall");
@@ -48,7 +53,9 @@ public class WallSlideState : BaseMovementState
         if (OnGround())
         {
             _machine.OnChangeState(_machine.m_idle);
+            return;
         }
+        base.StateCondition();
     }
     public override void SpriteFlip()
     {

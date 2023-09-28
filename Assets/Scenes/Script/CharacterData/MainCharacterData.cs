@@ -26,6 +26,7 @@ public class MainCharacterData : ScriptableObject
     [HideInInspector] public float m_realDeccel;
     [Header("Jumping related data")]
     public float m_hangTimeThreshold;
+    [Range (0f, 1f)]public float m_jumpHangGravityMultiplier;
     public float m_jumpHeight;
     public float m_jumpTimeToApex;
     [HideInInspector] public float m_jumpForce;
@@ -38,11 +39,12 @@ public class MainCharacterData : ScriptableObject
     public float m_wallJumpHeight;
     public float m_wallJumpTimeToApex;
     [HideInInspector] public float m_wallJumpForce;
+
     [Tooltip("Initial side force for wall jump")]
     public float m_wallJumpInitializeSidedForce;
-    [Range(0f, 1.5f)]public float m_wallJumpMovementConstraintTime;
+    [Range(0f, 1f)]public float m_wallJumpMovementConstraintTime;
     [Range(0f, 1f)] public float m_wallJumpMovementConstraintPercentile;
-    [Range (0f, 1f)]public float m_jumpHangGravityMultiplier;
+    
     [Header("Fast fall related data")]
     public float m_maxFastFallSpeed;
     public float m_fastFallGravityMultiplier;

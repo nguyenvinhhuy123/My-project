@@ -49,6 +49,11 @@ public class FastFallState : AirborneState
         }
         base.StateCondition();
     }
+    public override void OnMovement()
+    {
+        _machine._reusableProperty.m_rigidBody2D.velocity = 
+        new Vector2(0f, _machine._reusableProperty.m_rigidBody2D.velocity.y);
+    }
     private void onVFXFlip()
     {
         if (_machine._reusableProperty.m_spriteRenderer.flipX)
