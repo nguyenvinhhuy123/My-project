@@ -32,11 +32,17 @@ public class WallJumpState : AirborneState
     {
         float targetSpeed = _machine._sharedData.MovementInput * _machine._data.m_runMaxSpeed;
         float accel;
-        if (_machine._sharedData.OnWallJumpMovementRestrictedTime > 0f)
+        if (_machine._sharedData.OnWallJumpMovementRestrictedTime > 0f
+        && Mathf.Sign(_machine._sharedData.MovementInput) == Mathf.Sign(_lastWallContactDirection.x)
+        )
         {
+            //*We only want to constrains input if the input is against the initial force Vector
+            //*aka same direction with wall contact direction
+            //*This will help player to have more momentum went they want to jump out of the wall, thus create for freedom in movement
             targetSpeed = targetSpeed * _machine._data.m_wallJumpMovementConstraintPercentile;
-            targetSpeed += -1*_machine._data.m_wallJumpInitializeSidedForce*_lastWallContactDirection.x;
         }
+        targetSpeed += -1*_machine._data.m_wallJumpInitializeSidedForce*_lastWallContactDirection.x;
+
         Debug.Log($"targetSpeed: {targetSpeed}");
         accel = (Mathf.Abs(targetSpeed) > 0.01f) ? _machine._data.m_realAccel : _machine._data.m_realDeccel;    
 
