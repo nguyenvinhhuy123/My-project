@@ -68,7 +68,7 @@ public class MainCharacterData : ScriptableObject
     public GameObject m_fastFallVFXObject;
 
     [Header("SFX Effect")]
-    public AudioSource m_jumpSFXEffect;
+    public AudioClip  m_jumpSFXEffect;
 
     public 
     /// <summary>

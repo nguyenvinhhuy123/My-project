@@ -10,6 +10,7 @@ public class ReusableProperty
     public Collider2D m_collider2D;
     public SpriteRenderer m_spriteRenderer;
     public Animator m_animator;
+    public Damageable m_damageable;
 
     public ReusableProperty(GameObject GO)
     {
@@ -17,6 +18,7 @@ public class ReusableProperty
         m_collider2D = GO.GetComponent<Collider2D>();
         m_spriteRenderer = GO.GetComponent<SpriteRenderer>();
         m_animator = GO.GetComponent<Animator>();
+        m_damageable = GO.GetComponent<Damageable>();
     }
 }
 }

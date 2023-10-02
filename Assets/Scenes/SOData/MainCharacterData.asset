@@ -50,4 +50,4 @@ MonoBehaviour:
   m_coyoteTime: 0.25
   m_jumpInputBufferTime: 0.15
   m_fastFallVFXObject: {fileID: 3590073949618736141, guid: a26a87372109a77448dc7dc4b9ee766d, type: 3}
-  m_jumpSFXEffect: {fileID: 0}
+  m_jumpSFXEffect: {fileID: 8300000, guid: 007dec1d3b15bfc44b889793925642c8, type: 3}

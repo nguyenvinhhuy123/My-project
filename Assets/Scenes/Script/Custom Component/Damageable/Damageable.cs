@@ -1,10 +1,9 @@
-using System.Threading;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class Damagaeble : MonoBehaviour
+public class Damageable : MonoBehaviour
 {
     [SerializeField] private int m_Health;
     public int Health {get {return m_Health;} set {m_Health = value;}}

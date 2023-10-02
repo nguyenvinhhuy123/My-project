@@ -3,38 +3,50 @@ using System.Collections.Generic;
 using UnityEngine;
 namespace Utilities
 {
-    public class Singleton : MonoBehaviour
+    public class Singleton<T> : MonoBehaviour where T : Component
     {
-        public static Singleton Instance;
+        public static T Instance;
 
         void Init()
         {
             if (Instance == null )
             {
-                Instance = this;
+                Instance = FindObjectOfType<T>();
+                if (Instance == null)
+                {
+                    GameObject obj = new GameObject();
+                    obj.name = typeof(T).Name;
+                    Instance = obj.AddComponent<T>();
+                }
             }
-            else Destroy(this);
+            else Destroy(gameObject);
         }
         // Start is called before the first frame update
-        void Start()
+        protected virtual void Awake()
         {
             Init();
         }
     }
 
-    public class PersistenceSingleton : MonoBehaviour
+    public class PersistenceSingleton<T> : MonoBehaviour where T : Component
     {
-        public static PersistenceSingleton Instance;
+        public static T Instance;
         void Init()
         {
-            if (Instance == null)
+            if (Instance == null )
             {
-                Instance = this;
-                DontDestroyOnLoad(Instance);
-            }    
-            else Destroy(this);
+                Instance = FindObjectOfType<T>();
+                if (Instance == null)
+                {
+                    GameObject obj = new GameObject();
+                    obj.name = typeof(T).Name;
+                    Instance = obj.AddComponent<T>();
+                }
+                DontDestroyOnLoad(gameObject);
+            }
+            else Destroy(gameObject);
         } 
-        void Start()
+        protected virtual void Awake()
         {
             Init();
         }

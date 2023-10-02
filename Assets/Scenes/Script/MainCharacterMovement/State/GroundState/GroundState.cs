@@ -39,6 +39,10 @@ public class GroundState : BaseMovementState
             _machine.OnChangeState(_machine.m_jump);
             return;
         }
+        if (_machine._reusableProperty.m_rigidBody2D.velocity.y < 0f)
+        {
+            _machine.OnChangeState(_machine.m_fall);
+        }
         base.StateCondition();
     }
 }
