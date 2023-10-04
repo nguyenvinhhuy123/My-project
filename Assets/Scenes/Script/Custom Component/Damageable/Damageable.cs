@@ -7,7 +7,7 @@ public class Damageable : MonoBehaviour
 {
     [SerializeField] private int m_Health;
     public int Health {get {return m_Health;} set {m_Health = value;}}
-    private int m_CurrentHealth;
+    [SerializeField] private int m_CurrentHealth;
     private GameObject m_attachedGO;
 
     [SerializeField]private float m_IFrameTime;
@@ -24,19 +24,17 @@ public class Damageable : MonoBehaviour
     }
     void Update()
     {
-        m_IFrameTimer -= Time.deltaTime;   
+        m_IFrameTimer -= Time.deltaTime; 
     }
-
     public void onResetHealth()
     {
         m_CurrentHealth = m_Health;
     } 
-    public void onDamaged(int InputDamage)
+    public void OnDamaged(int InputDamage, DamageSource2D source)
     {
         bool isDead = false;
         if (m_IFrameTimer >= 0f)
         {
-            
             return;
         } 
         m_CurrentHealth -= InputDamage;
@@ -47,6 +45,13 @@ public class Damageable : MonoBehaviour
         }
         m_damagedEvent.Invoke(m_CurrentHealth, isDead);
         m_IFrameTimer = m_IFrameTime;
+        StartCoroutine(iFrame(source.gameObject.layer));
+    }
+    private IEnumerator iFrame(int otherLayer)
+    {
+        Physics2D.IgnoreLayerCollision(gameObject.layer, otherLayer, true);
+        yield return new WaitUntil(() => m_IFrameTimer <= 0f);
+        Physics2D.IgnoreLayerCollision(gameObject.layer, otherLayer, false);
     }
     /// <summary>
     /// register UnityAction for damagedEvent

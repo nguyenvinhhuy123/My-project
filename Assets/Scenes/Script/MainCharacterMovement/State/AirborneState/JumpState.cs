@@ -15,6 +15,7 @@ public class JumpState : AirborneState
         _machine._sharedData.OnJumpPressBufferTime = 0f;
         _machine._sharedData.LastOnGroundTime = 0f;
         OnJump();
+        AudioManager.Instance.PlaySFX(_machine._data.m_jumpSFXEffect);
     }   
     public override void OnExit()
     {
