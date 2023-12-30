@@ -10,7 +10,7 @@ public class BaseState : IState
     protected MainCharacterMovementStateMachine _machine;
     protected readonly MainCharacterData _data;
     protected ReusableProperty _reusableProperty;
-    public BaseMovementState(MainCharacterMovementStateMachine machine)
+    public BaseState(MainCharacterMovementStateMachine machine)
     {
         _machine = machine;
         _data = _machine._data;
