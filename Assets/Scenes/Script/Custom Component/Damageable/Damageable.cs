@@ -5,16 +5,15 @@ using UnityEngine.Events;
 
 public class Damageable : MonoBehaviour
 {
+    //*Max health of this obj*/
     [SerializeField] private int m_Health;
     public int Health {get {return m_Health;} set {m_Health = value;}}
+    //*Track Current health of this obj*/
     [SerializeField] private int m_CurrentHealth;
     private GameObject m_attachedGO;
-
-    [SerializeField]private float m_IFrameTime;
+    [SerializeField] private float m_IFrameTime;
     public float IFrameTime {get {return m_IFrameTime;} set {m_IFrameTime = value;}}
-
     private float m_IFrameTimer;
-
     private UnityEvent<int, bool> m_damagedEvent;
     void Awake()
     {
@@ -24,20 +23,29 @@ public class Damageable : MonoBehaviour
     }
     void Update()
     {
+        //Update timer call for IFrameTimer
         m_IFrameTimer -= Time.deltaTime; 
     }
+    /// <summary>
+    /// Reset this obj current health to max_health
+    /// </summary>
     public void onResetHealth()
     {
         m_CurrentHealth = m_Health;
     } 
-    public void OnDamaged(int InputDamage, DamageSource2D source)
+    /// <summary>
+    /// Call back when receive dmg from outer source
+    /// </summary>
+    /// <param name="inputDamage">taken damage</param>
+    /// <param name="source">dmg source</param>
+    public void OnDamaged(int inputDamage, DamageSource2D source)
     {
         bool isDead = false;
         if (m_IFrameTimer >= 0f)
         {
             return;
         } 
-        m_CurrentHealth -= InputDamage;
+        m_CurrentHealth -= inputDamage;
         if (m_CurrentHealth <= 0)
         {
             m_CurrentHealth = 0;
@@ -47,6 +55,12 @@ public class Damageable : MonoBehaviour
         m_IFrameTimer = m_IFrameTime;
         StartCoroutine(iFrame(source.gameObject.layer));
     }
+    /// <summary>
+    /// IFrame coroutine callback
+    /// </summary>
+    /// <param name="otherLayer">layer to ignore collision, 
+    /// should be the layer of the object that cause last dmg</param>
+    /// <returns></returns>
     private IEnumerator iFrame(int otherLayer)
     {
         Physics2D.IgnoreLayerCollision(gameObject.layer, otherLayer, true);
