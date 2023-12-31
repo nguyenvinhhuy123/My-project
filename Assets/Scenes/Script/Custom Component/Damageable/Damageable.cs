@@ -14,6 +14,9 @@ public class Damageable : MonoBehaviour
     [SerializeField] private float m_IFrameTime;
     public float IFrameTime {get {return m_IFrameTime;} set {m_IFrameTime = value;}}
     private float m_IFrameTimer;
+    /*
+    *m_damageEvent<currentHealth: int, isDead_:bool>
+    */
     private UnityEvent<int, bool> m_damagedEvent;
     void Awake()
     {
@@ -53,7 +56,7 @@ public class Damageable : MonoBehaviour
         }
         m_damagedEvent.Invoke(m_CurrentHealth, isDead);
         m_IFrameTimer = m_IFrameTime;
-        StartCoroutine(iFrame(source.gameObject.layer));
+        StartCoroutine(IFrame(source.gameObject.layer));
     }
     /// <summary>
     /// IFrame coroutine callback
@@ -61,7 +64,7 @@ public class Damageable : MonoBehaviour
     /// <param name="otherLayer">layer to ignore collision, 
     /// should be the layer of the object that cause last dmg</param>
     /// <returns></returns>
-    private IEnumerator iFrame(int otherLayer)
+    private IEnumerator IFrame(int otherLayer)
     {
         Physics2D.IgnoreLayerCollision(gameObject.layer, otherLayer, true);
         yield return new WaitUntil(() => m_IFrameTimer <= 0f);
