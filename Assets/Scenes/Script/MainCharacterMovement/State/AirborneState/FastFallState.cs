@@ -25,6 +25,7 @@ public class FastFallState : AirborneState
     public override void OnUpdate()
     {
         OnFastFall();
+        OnVFXFlip();
         base.OnUpdate();
     }
     private void OnFastFall()
@@ -62,18 +63,9 @@ public class FastFallState : AirborneState
     }
     private void OnVFXFlip()
     {
-        if (_machine._reusableProperty.m_spriteRenderer.flipX)
-        {
-            _fastFallVFX.transform.localPosition = new Vector3(-0.05f, 0f, 0f);
-        }
-        else 
-        {
-            _fastFallVFX.transform.localPosition = new Vector3(0.05f, 0f, 0f);
-        }
+        float facingX = GetFacingDirection().x;
+
+            _fastFallVFX.transform.localPosition = new Vector3(0.05f*facingX, 0f, 0f);
     }
-    public override void SpriteFlip()
-    {
-        base.SpriteFlip();
-        OnVFXFlip();
-    }
+
 }

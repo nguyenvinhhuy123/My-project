@@ -8,7 +8,7 @@ public class StateSharedData
     public bool IsFastFallPress {get; set;}
     public bool CanDoubleJump {get;set;}
     public Vector2 WallContactDirection {get; set;}
-    
+
     #region Timer System
     public float LastOnGroundTime {get; set;}
     public float LastOnWallTime {get; set;}

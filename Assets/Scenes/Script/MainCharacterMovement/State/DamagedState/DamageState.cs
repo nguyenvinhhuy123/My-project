@@ -6,7 +6,7 @@ public class DamageState : BaseState
 {
     public DamageState(MainCharacterMovementStateMachine _machine) : base(_machine)
     {
-        ANIMATION_PARAM = "PlayerDamage";
+        ANIMATION_PARAM = "PlayerDamaged";
     }
     public override void OnEnter()
     {
@@ -26,7 +26,14 @@ public class DamageState : BaseState
     }
     public override void OnMovement()
     {
-        base.OnMovement();
+        //let empty instead of calling base OnMovement by default
+    }
+    private void OnKnockBack()
+    {
+        /*
+        *Check facing direction
+        *initial force = knockback x * facing dir , knockback y 
+        */
     }
     public override void StateCondition()
     {

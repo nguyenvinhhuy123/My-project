@@ -57,18 +57,4 @@ public class WallSlideState : BaseMovementState
         }
         base.StateCondition();
     }
-    public override void SpriteFlip()
-    {
-        if (_machine._sharedData.WallContactDirection.x == 0f) return;
-        if (_machine._sharedData.WallContactDirection.x > 0f ) 
-        {
-            _machine._reusableProperty.m_spriteRenderer.flipX = false;
-            return;
-        }
-        if (_machine._sharedData.WallContactDirection.x < 0f ) 
-        {
-            _machine._reusableProperty.m_spriteRenderer.flipX = true;
-            return;
-        }
-    }
 }

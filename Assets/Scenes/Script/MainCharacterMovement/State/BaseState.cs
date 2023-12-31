@@ -16,6 +16,7 @@ public class BaseState : IState
         _data = _machine._data;
         _reusableProperty = _machine._reusableProperty;
     }
+    #region Virtual Callback 
     public virtual void OnEnter()
     {
         PlayAnimation();
@@ -39,6 +40,36 @@ public class BaseState : IState
         StateCondition();
         OnMovement();
     }
+    public virtual void OnMovement()
+    {
+        float targetSpeed = _machine._sharedData.MovementInput * _machine._data.m_runMaxSpeed;
+
+        float accel;
+        accel = (Mathf.Abs(targetSpeed) > 0.01f) ? _machine._data.m_realAccel : _machine._data.m_realDeccel;    
+
+        //Whenever our player moves faster than our maxSpeed (due to speed buff/push mechanism), 
+        //We do not want to reduce our player Speed to the Clamp so fast
+        //This give player a chance to create a hyper speed boost situation more freely
+        if (
+            (Mathf.Abs(_machine._reusableProperty.m_rigidBody2D.velocity.x) > Mathf.Abs(targetSpeed))
+        &&  (Mathf.Sign(_machine._reusableProperty.m_rigidBody2D.velocity.x) == Mathf.Sign(targetSpeed))
+        && (MathF.Abs(targetSpeed) > 0.01f)
+        )
+        {
+            accel *= _machine._data.HyperSpeedDeccelMultiplier;
+            Debug.Log("Hyper Speed");
+        }
+        float amountToReachTargetSpeed = targetSpeed - _machine._reusableProperty.m_rigidBody2D.velocity.x;
+
+        float realForceToAdd = amountToReachTargetSpeed * accel;
+
+        _machine._reusableProperty.m_rigidBody2D.AddForce(realForceToAdd*Vector2.right, ForceMode2D.Force);
+    }
+    public virtual void StateCondition()
+    {
+
+    }
+    #endregion
     protected bool OnGround()
     {
         RaycastHit2D[] CastHit = new RaycastHit2D[5];
@@ -84,32 +115,7 @@ public class BaseState : IState
     {
         _machine._reusableProperty.m_animator.Play(ANIMATION_PARAM);
     }
-    public virtual void OnMovement()
-    {
-        float targetSpeed = _machine._sharedData.MovementInput * _machine._data.m_runMaxSpeed;
-
-        float accel;
-        accel = (Mathf.Abs(targetSpeed) > 0.01f) ? _machine._data.m_realAccel : _machine._data.m_realDeccel;    
-
-        //Whenever our player moves faster than our maxSpeed (due to speed buff/push mechanism), 
-        //We do not want to reduce our player Speed to the Clamp so fast
-        //This give player a chance to create a hyper speed boost situation more freely
-        if (
-            (Mathf.Abs(_machine._reusableProperty.m_rigidBody2D.velocity.x) > Mathf.Abs(targetSpeed))
-        &&  (Mathf.Sign(_machine._reusableProperty.m_rigidBody2D.velocity.x) == Mathf.Sign(targetSpeed))
-        && (MathF.Abs(targetSpeed) > 0.01f)
-        )
-        {
-            accel *= _machine._data.HyperSpeedDeccelMultiplier;
-            Debug.Log("Hyper Speed");
-        }
-        float amountToReachTargetSpeed = targetSpeed - _machine._reusableProperty.m_rigidBody2D.velocity.x;
-
-        float realForceToAdd = amountToReachTargetSpeed * accel;
-
-        _machine._reusableProperty.m_rigidBody2D.AddForce(realForceToAdd*Vector2.right, ForceMode2D.Force);
-    }
-    public virtual void SpriteFlip()
+    private void SpriteFlip()
     {
         if (_machine._reusableProperty.m_rigidBody2D.velocity.x == 0f) return;
         if (_machine._reusableProperty.m_rigidBody2D.velocity.x > 0f ) 
@@ -127,15 +133,18 @@ public class BaseState : IState
     {
         _machine._reusableProperty.m_rigidBody2D.gravityScale = scale;
     }
-    public virtual void StateCondition()
-    {
-
-    }
-    protected void TimerChange()
+    private void TimerChange()
     {
         _machine._sharedData.LastOnGroundTime -= Time.deltaTime;   
         _machine._sharedData.LastOnWallTime -= Time.deltaTime;   
         _machine._sharedData.OnJumpPressBufferTime -= Time.deltaTime;   
         _machine._sharedData.OnWallJumpMovementRestrictedTime -= Time.deltaTime;
     }
+    protected Vector2 GetFacingDirection()
+    {
+        float facingX = (_machine._reusableProperty.m_spriteRenderer.flipX ? -1 : 1);
+        Vector2 facingDirection = new Vector2(facingX, 0);
+        return facingDirection;
+    }
+
 }
