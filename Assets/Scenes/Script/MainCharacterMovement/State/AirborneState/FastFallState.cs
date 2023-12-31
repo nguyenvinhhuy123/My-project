@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class FastFallState : AirborneState
 {
-    private GameObject _fastFallVFXObject;
+    private ParticleSystem _fastFallVFX;
     public FastFallState(MainCharacterMovementStateMachine _machine) : base(_machine)
     {
         ANIMATION_PARAM = "PlayerFall";
@@ -15,7 +15,12 @@ public class FastFallState : AirborneState
         base.OnEnter();
         OnFastFall();
         _machine._sharedData.IsFastFallPress = false;
-        _fastFallVFXObject = GameObject.Instantiate(_machine._data.m_fastFallVFXObject, _machine._controller.gameObject.transform);
+        _fastFallVFX =
+        GameObject
+        .Instantiate(_machine._data.m_fastFallVFXObject,
+                    _machine._controller.gameObject.transform)
+        .GetComponent<ParticleSystem>();
+        _fastFallVFX.Play();
     }
     public override void OnUpdate()
     {
@@ -30,7 +35,8 @@ public class FastFallState : AirborneState
     }
     public override void OnExit()
     {
-        GameObject.Destroy(_fastFallVFXObject);
+        _fastFallVFX.Stop();
+        GameObject.Destroy(_fastFallVFX.gameObject);
     }
     public override void StateCondition()
     {
@@ -54,20 +60,20 @@ public class FastFallState : AirborneState
         _machine._reusableProperty.m_rigidBody2D.velocity = 
         new Vector2(0f, _machine._reusableProperty.m_rigidBody2D.velocity.y);
     }
-    private void onVFXFlip()
+    private void OnVFXFlip()
     {
         if (_machine._reusableProperty.m_spriteRenderer.flipX)
         {
-            _fastFallVFXObject.transform.localPosition = new Vector3(-0.05f, 0f, 0f);
+            _fastFallVFX.transform.localPosition = new Vector3(-0.05f, 0f, 0f);
         }
         else 
         {
-            _fastFallVFXObject.transform.localPosition = new Vector3(0.05f, 0f, 0f);
+            _fastFallVFX.transform.localPosition = new Vector3(0.05f, 0f, 0f);
         }
     }
     public override void SpriteFlip()
     {
         base.SpriteFlip();
-        onVFXFlip();
+        OnVFXFlip();
     }
 }
