@@ -11,6 +11,8 @@ Material:
   m_Shader: {fileID: 211, guid: 0000000000000000f000000000000000, type: 0}
   m_ValidKeywords:
   - _ALPHABLEND_ON
+  - _COLORADDSUBDIFF_ON
+  - _EMISSION
   m_InvalidKeywords: []
   m_LightmapFlags: 0
   m_EnableInstancingVariants: 0
@@ -53,29 +55,29 @@ Material:
     - _BlendOp: 0
     - _BumpScale: 1
     - _CameraFadingEnabled: 0
-    - _CameraFarFadeDistance: 2
-    - _CameraNearFadeDistance: 1
+    - _CameraFarFadeDistance: 3.56
+    - _CameraNearFadeDistance: 1.55
     - _ColorMask: 15
-    - _ColorMode: 0
+    - _ColorMode: 1
     - _Cull: 2
     - _Cutoff: 0
-    - _DistortionBlend: 0.5
+    - _DistortionBlend: 0
     - _DistortionEnabled: 0
-    - _DistortionStrength: 1
-    - _DistortionStrengthScaled: 0
-    - _DstBlend: 1
-    - _EmissionEnabled: 0
+    - _DistortionStrength: 5.23
+    - _DistortionStrengthScaled: 0.523
+    - _DstBlend: 10
+    - _EmissionEnabled: 1
     - _EnableExternalAlpha: 0
     - _FlipbookMode: 0
     - _Glossiness: 0.5
     - _InvFade: 3
     - _LightingEnabled: 0
     - _Metallic: 0
-    - _Mode: 4
+    - _Mode: 2
     - _Shininess: 0.2
     - _SoftParticlesEnabled: 0
-    - _SoftParticlesFarFadeDistance: 1
-    - _SoftParticlesNearFadeDistance: 0
+    - _SoftParticlesFarFadeDistance: 6.47
+    - _SoftParticlesNearFadeDistance: 4.99
     - _SrcBlend: 5
     - _Stencil: 0
     - _StencilComp: 8
@@ -87,7 +89,7 @@ Material:
     m_Colors:
     - _CameraFadeParams: {r: 0, g: Infinity, b: 0, a: 0}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
-    - _ColorAddSubDiff: {r: 0, g: 0, b: 0, a: 0}
+    - _ColorAddSubDiff: {r: 1, g: 0, b: 0, a: 0}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _Flip: {r: 1, g: 1, b: 1, a: 1}
     - _RendererColor: {r: 1, g: 1, b: 1, a: 1}
