@@ -32,13 +32,13 @@ public class AirborneState : BaseMovementState
         if (_machine._sharedData.IsFastFallPress)
         {
             //TODO: Change to fast fall state
-            _machine.OnChangeState(_machine.m_fastFall);
+            _machine.OnChangeState(_machine.FastFall);
             return;
         }
         if (_machine._sharedData.CanDoubleJump
         && _machine._sharedData.OnJumpPressBufferTime > 0f)
         {
-            _machine.OnChangeState(_machine.m_doubleJump);
+            _machine.OnChangeState(_machine.DoubleJump);
             return;
         }
         if (OnWall() 
@@ -46,7 +46,7 @@ public class AirborneState : BaseMovementState
         == Mathf.Sign(_machine._sharedData.WallContactDirection.x)
         )
         {
-            _machine.OnChangeState(_machine.m_wallSlide);
+            _machine.OnChangeState(_machine.WallSlide);
             return;
         }
         base.StateCondition();

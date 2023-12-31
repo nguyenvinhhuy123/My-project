@@ -44,23 +44,23 @@ public class FallState : AirborneState
         {
             if (_machine._reusableProperty.m_rigidBody2D.velocity.x == 0f)
             {
-                _machine.OnChangeState(_machine.m_idle);
+                _machine.OnChangeState(_machine.Idle);
                 return;
             }
             if (_machine._reusableProperty.m_rigidBody2D.velocity.x != 0f)
             {
-                _machine.OnChangeState(_machine.m_run);
+                _machine.OnChangeState(_machine.Run);
                 return;
             }
         }
         if (_machine._sharedData.LastOnWallTime > 0f && _machine._sharedData.OnJumpPressBufferTime > 0f)
         {
-            _machine.OnChangeState(_machine.m_wallJump);
+            _machine.OnChangeState(_machine.WallJump);
             return;
         }
         if (_machine._sharedData.LastOnGroundTime > 0f && _machine._sharedData.OnJumpPressBufferTime > 0f)
         {
-            _machine.OnChangeState(_machine.m_jump);
+            _machine.OnChangeState(_machine.Jump);
             return;
         }
         base.StateCondition();

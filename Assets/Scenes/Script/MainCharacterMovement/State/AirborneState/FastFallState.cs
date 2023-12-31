@@ -44,12 +44,12 @@ public class FastFallState : AirborneState
         {
             if (_machine._reusableProperty.m_rigidBody2D.velocity.x == 0f)
             {
-                _machine.OnChangeState(_machine.m_idle);
+                _machine.OnChangeState(_machine.Idle);
                 return;
             }
             if (_machine._reusableProperty.m_rigidBody2D.velocity.x != 0f)
             {
-                _machine.OnChangeState(_machine.m_run);
+                _machine.OnChangeState(_machine.Run);
                 return;
             }
         }

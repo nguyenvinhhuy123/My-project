@@ -11,20 +11,21 @@ public class MainCharacterMovementStateMachine : BaseStateMachine
     public StateSharedData _sharedData {get;}
 
     #region State Register
-    public IdleState m_idle;
-    public RunState m_run;
-    public JumpState m_jump;
-    public FallState m_fall;
-    public DoubleJumpState m_doubleJump;
-    public FastFallState m_fastFall;
-    public WallSlideState m_wallSlide;
-    public WallJumpState m_wallJump;
+    public IdleState Idle {get; private set;}
+    public RunState Run {get; private set;}
+    public JumpState Jump {get; private set;}
+    public FallState Fall {get; private set;}
+    public DoubleJumpState DoubleJump {get; private set;}
+    public FastFallState FastFall {get; private set;}
+    public WallSlideState WallSlide {get; private set;}
+    public WallJumpState WallJump {get; private set;}
+    public DamageState Damaged {get; private set;}
     #endregion
     public MainCharacterMovementStateMachine(MainCharacterMovementController controller)
     {
         Debug.Log("init state machine");
         _controller = controller;
-        _reusableProperty = _controller._reusableProperty;
+        _reusableProperty = _controller.ReusableProperty;
         _data = _controller.Data;
         _sharedData = new StateSharedData();
         #region State Initialization
@@ -33,13 +34,14 @@ public class MainCharacterMovementStateMachine : BaseStateMachine
     }
     private void StateInit()
     {
-        m_idle = new IdleState(this);
-        m_run = new RunState(this);
-        m_jump = new JumpState(this);
-        m_fall = new FallState(this);
-        m_doubleJump = new DoubleJumpState(this);
-        m_fastFall = new FastFallState(this);
-        m_wallSlide = new WallSlideState(this);
-        m_wallJump = new WallJumpState(this);
+        Idle = new IdleState(this);
+        Run = new RunState(this);
+        Jump = new JumpState(this);
+        Fall = new FallState(this);
+        DoubleJump = new DoubleJumpState(this);
+        FastFall = new FastFallState(this);
+        WallSlide = new WallSlideState(this);
+        WallJump = new WallJumpState(this);
+        Damaged = new DamageState(this);
     }
 }

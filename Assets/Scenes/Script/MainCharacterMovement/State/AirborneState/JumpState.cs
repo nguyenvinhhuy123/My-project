@@ -46,7 +46,7 @@ public class JumpState : AirborneState
         if (_machine._reusableProperty.m_rigidBody2D.velocity.y <= 0f)
         {
             //TODO: Change to fall state
-            _machine.OnChangeState(_machine.m_fall);
+            _machine.OnChangeState(_machine.Fall);
             return;
         }
         base.StateCondition();

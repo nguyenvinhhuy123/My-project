@@ -34,25 +34,25 @@ public class WallSlideState : BaseMovementState
     {
         if (_machine._sharedData.OnJumpPressBufferTime > 0f)
         {
-            _machine.OnChangeState(_machine.m_wallJump);
+            _machine.OnChangeState(_machine.WallJump);
             return;
         }
         if (!OnWall())
         {
             Debug.Log($"not on wall");
-            _machine.OnChangeState(_machine.m_fall);
+            _machine.OnChangeState(_machine.Fall);
             return;
         }
         if (OnWall() && _machine._sharedData.MovementInput
         != _machine._sharedData.WallContactDirection.x)
         {
             Debug.Log($"input key != contact vector");
-            _machine.OnChangeState(_machine.m_fall);
+            _machine.OnChangeState(_machine.Fall);
             return;
         }
         if (OnGround())
         {
-            _machine.OnChangeState(_machine.m_idle);
+            _machine.OnChangeState(_machine.Idle);
             return;
         }
         base.StateCondition();
