@@ -1,27 +1,36 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Events;
 using Utilities;
 
 public class MainCharacterMovementController : MonoBehaviour
 {
     [SerializeField] private MainCharacterData m_data;
     public MainCharacterData Data {get {return m_data;} }
-    public ReusableProperty _reusableProperty {get; private set;}
+    public ReusableProperty ReusableProperty {get; private set;}
     private MainCharacterMovementStateMachine _stateMachine;
+    private UnityAction<int,bool> _onDamageAction;
 
     // Start is called before the first frame update
     void Awake()
     {
-        _reusableProperty = new ReusableProperty(gameObject);
+        ReusableProperty = new ReusableProperty(gameObject);
         _stateMachine = new MainCharacterMovementStateMachine(this);
+        _onDamageAction += OnDamaged;
     }
     void Start()
     {
-        _stateMachine.OnChangeState(_stateMachine.m_idle);
+        _stateMachine.OnChangeState(_stateMachine.Idle);
+        ReusableProperty.m_damageable.EventListenerRegister(_onDamageAction);
     }
-
+    void OnDestroy()
+    {
+        ReusableProperty.m_damageable.EventListenerRegister(_onDamageAction);
+        _onDamageAction -= OnDamaged;
+    }
     // Update is called once per frame
     void Update()
     {
@@ -63,6 +72,10 @@ public class MainCharacterMovementController : MonoBehaviour
         //     Debug.Log(context);
         //     _stateMachine._sharedData.IsFastFallPress = false;
         // }
+    }
+    public void OnDamaged(int currentHealth, bool isDead)
+    {
+        _stateMachine.OnChangeState(_stateMachine.Damaged);
     }
 
 }
