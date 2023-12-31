@@ -44,4 +44,25 @@ public class MainCharacterMovementStateMachine : BaseStateMachine
         WallJump = new WallJumpState(this);
         Damaged = new DamageState(this);
     }
+    /// <summary>
+    /// callback function on character is dead
+    /// </summary>
+    public void OnDead()
+    {
+        Debug.Log("Not Implemented " + nameof(OnDead));
+    }
+    /// <summary>
+    /// Callback function on character damaged
+    /// </summary>
+    public void OnDamage()
+    {
+        OnChangeState(Damaged);
+    }
+    /// <summary>
+    /// Callback function on character spawn back to world
+    /// </summary>
+    public void OnSpawn()
+    {
+        Debug.Log("Not Implemented " + nameof(OnSpawn));
+    }
 }
