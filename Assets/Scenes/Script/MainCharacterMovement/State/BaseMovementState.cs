@@ -6,11 +6,8 @@ using Utilities;
 using UnityEngine.InputSystem;
 public class BaseMovementState : BaseState
 {
-    public BaseMovementState(MainCharacterMovementStateMachine machine) : base(_machine)
+    public BaseMovementState(MainCharacterMovementStateMachine _machine) : base(_machine)
     {
-        _machine = machine;
-        _data = _machine._data;
-        _reusableProperty = _machine._reusableProperty;
     }
     public override void OnEnter()
     {
