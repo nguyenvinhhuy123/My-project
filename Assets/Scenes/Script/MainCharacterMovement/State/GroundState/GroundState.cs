@@ -17,6 +17,7 @@ public class GroundState : BaseMovementState
     }   
     public override void OnExit()
     {
+        _machine._sharedData.IsFastFallPress = false;
         base.OnExit();
     }
     public override void OnInputHandle()
