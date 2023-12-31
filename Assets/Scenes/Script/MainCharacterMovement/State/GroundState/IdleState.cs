@@ -35,7 +35,7 @@ public class IdleState : GroundState
     {
         if (_machine._sharedData.MovementInput != 0f)
         {
-            _machine.OnChangeState(_machine.m_run);
+            _machine.OnChangeState(_machine.Run);
             return;
         }
         base.StateCondition();

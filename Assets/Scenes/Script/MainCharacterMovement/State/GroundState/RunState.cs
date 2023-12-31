@@ -35,7 +35,7 @@ public class RunState : GroundState
         if (_machine._reusableProperty.m_rigidBody2D.velocity.x == 0f
         && _machine._sharedData.MovementInput == 0)
         {
-            _machine.OnChangeState(_machine.m_idle);
+            _machine.OnChangeState(_machine.Idle);
             return;
         }
         base.StateCondition();

@@ -36,12 +36,12 @@ public class GroundState : BaseMovementState
     {
         if (_machine._sharedData.OnJumpPressBufferTime > 0f)
         {
-            _machine.OnChangeState(_machine.m_jump);
+            _machine.OnChangeState(_machine.Jump);
             return;
         }
         if (_machine._reusableProperty.m_rigidBody2D.velocity.y < 0f)
         {
-            _machine.OnChangeState(_machine.m_fall);
+            _machine.OnChangeState(_machine.Fall);
         }
         base.StateCondition();
     }
