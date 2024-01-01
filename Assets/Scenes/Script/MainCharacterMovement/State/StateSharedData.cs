@@ -14,5 +14,6 @@ public class StateSharedData
     public float LastOnWallTime {get; set;}
     public float OnJumpPressBufferTime {get; set;}
     public float OnWallJumpMovementRestrictedTime {get; set;}
+    public float StayInDamagedStateTime {get; set;}
     #endregion
 }
