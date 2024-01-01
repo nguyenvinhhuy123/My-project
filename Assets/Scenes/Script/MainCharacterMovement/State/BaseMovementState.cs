@@ -31,7 +31,6 @@ public class BaseMovementState : BaseState
     }
     public override void StateCondition()
     {
-        
         base.StateCondition();
     }
 }

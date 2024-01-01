@@ -5,7 +5,7 @@ using Utilities;
 
 public class MainCharacterMovementStateMachine : BaseStateMachine
 {
-    public MainCharacterMovementController _controller {get;}
+    public MainCharacterController _controller {get;}
     public ReusableProperty _reusableProperty {get;}
     public MainCharacterData _data {get;}
     public StateSharedData _sharedData {get;}
@@ -20,8 +20,9 @@ public class MainCharacterMovementStateMachine : BaseStateMachine
     public WallSlideState WallSlide {get; private set;}
     public WallJumpState WallJump {get; private set;}
     public DamageState Damaged {get; private set;}
+    public DeadState Dead {get; private set;}
     #endregion
-    public MainCharacterMovementStateMachine(MainCharacterMovementController controller)
+    public MainCharacterMovementStateMachine(MainCharacterController controller)
     {
         Debug.Log("init state machine");
         _controller = controller;
@@ -43,13 +44,14 @@ public class MainCharacterMovementStateMachine : BaseStateMachine
         WallSlide = new WallSlideState(this);
         WallJump = new WallJumpState(this);
         Damaged = new DamageState(this);
+        Dead = new DeadState(this);
     }
     /// <summary>
     /// callback function on character is dead
     /// </summary>
     public void OnDead()
     {
-        Debug.Log("Not Implemented " + nameof(OnDead));
+        OnChangeState(Dead);
     }
     /// <summary>
     /// Callback function on character damaged
@@ -63,6 +65,8 @@ public class MainCharacterMovementStateMachine : BaseStateMachine
     /// </summary>
     public void OnSpawn()
     {
-        Debug.Log("Not Implemented " + nameof(OnSpawn));
+        //Debug.Log("Not Implemented " + nameof(OnSpawn));
+        //TTODO: Change to respawn state here
+        OnChangeState(Idle);
     }
 }
