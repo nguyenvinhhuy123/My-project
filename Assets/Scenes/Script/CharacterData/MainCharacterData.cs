@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Timers;
 using UnityEngine;
 
 
@@ -59,6 +60,10 @@ public class MainCharacterData : ScriptableObject
     [Tooltip("Wall Sliding gravity multi should be set to 0 or small amount")]
     [Range(0f, 0.1f)]public float m_wallSlidingGravityMultiplier;
     public float m_wallSlidingAccel;
+    [Header("Get hit related Data")]
+    public Vector2 m_knockBackForce;
+    [Range(0f, 1f)] public float m_DamagedStateDuration;
+
     [Header("Assisted variables")]
     [Range(0.01f,0.75f)]public float m_coyoteTime;
     [Range(0.01f, 0.75f)]public float m_jumpInputBufferTime;
