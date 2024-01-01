@@ -5,8 +5,13 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Events;
 using Utilities;
-
-public class MainCharacterMovementController : MonoBehaviour
+[RequireComponent(typeof(Animator))]
+[RequireComponent(typeof(PlayerInput))]
+[RequireComponent(typeof(Rigidbody2D))]
+[RequireComponent(typeof(Collider2D))]
+[RequireComponent(typeof(Damageable))]
+[RequireComponent(typeof(SpriteRenderer))]
+public class MainCharacterController : MonoBehaviour
 {
     [SerializeField] private MainCharacterData m_data;
     public MainCharacterData Data {get {return m_data;} }
@@ -76,6 +81,11 @@ public class MainCharacterMovementController : MonoBehaviour
     public void OnDamaged(int currentHealth, bool isDead)
     {
         //TODO: Call Change to Dead state if isDead = true
+        if (isDead)
+        {
+            _stateMachine.OnChangeState(_stateMachine.Dead);
+            return;
+        }
         _stateMachine.OnChangeState(_stateMachine.Damaged);
     }
 
