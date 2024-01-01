@@ -115,7 +115,7 @@ public class BaseState : IState
     {
         _machine._reusableProperty.m_animator.Play(ANIMATION_PARAM);
     }
-    private void SpriteFlip()
+    public virtual void SpriteFlip()
     {
         if (_machine._reusableProperty.m_rigidBody2D.velocity.x == 0f) return;
         if (_machine._reusableProperty.m_rigidBody2D.velocity.x > 0f ) 
@@ -139,6 +139,7 @@ public class BaseState : IState
         _machine._sharedData.LastOnWallTime -= Time.deltaTime;   
         _machine._sharedData.OnJumpPressBufferTime -= Time.deltaTime;   
         _machine._sharedData.OnWallJumpMovementRestrictedTime -= Time.deltaTime;
+        _machine._sharedData.StayInDamagedStateTime -= Time.deltaTime;
     }
     protected Vector2 GetFacingDirection()
     {
