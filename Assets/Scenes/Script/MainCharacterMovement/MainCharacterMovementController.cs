@@ -75,6 +75,7 @@ public class MainCharacterMovementController : MonoBehaviour
     }
     public void OnDamaged(int currentHealth, bool isDead)
     {
+        //TODO: Call Change to Dead state if isDead = true
         _stateMachine.OnChangeState(_stateMachine.Damaged);
     }
 
