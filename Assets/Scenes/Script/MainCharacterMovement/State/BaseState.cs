@@ -147,5 +147,4 @@ public class BaseState : IState
         Vector2 facingDirection = new Vector2(facingX, 0);
         return facingDirection;
     }
-
 }

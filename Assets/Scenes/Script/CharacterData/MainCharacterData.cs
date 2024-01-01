@@ -62,7 +62,10 @@ public class MainCharacterData : ScriptableObject
     public float m_wallSlidingAccel;
     [Header("Get hit related Data")]
     public Vector2 m_knockBackForce;
-    [Range(0f, 1f)] public float m_DamagedStateDuration;
+    [Range(0.5f, 1f)] public float m_DamagedStateDuration;
+    [Header("Dead and Respawn")]
+    [Range(0.5f, 1.5f)] public float m_DeadStateDuration;
+    public float m_reSpawnDuration;
 
     [Header("Assisted variables")]
     [Range(0.01f,0.75f)]public float m_coyoteTime;
