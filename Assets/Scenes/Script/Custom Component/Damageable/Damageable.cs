@@ -55,6 +55,7 @@ public class Damageable : MonoBehaviour
             isDead =true;
         }
         m_damagedEvent.Invoke(m_CurrentHealth, isDead);
+        if (isDead) return;
         m_IFrameTimer = m_IFrameTime;
         StartCoroutine(IFrame(source.gameObject.layer));
     }
