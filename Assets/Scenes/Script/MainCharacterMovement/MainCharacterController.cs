@@ -11,6 +11,7 @@ using Utilities;
 [RequireComponent(typeof(Collider2D))]
 [RequireComponent(typeof(Damageable))]
 [RequireComponent(typeof(SpriteRenderer))]
+
 public class MainCharacterController : MonoBehaviour
 {
     [SerializeField] private MainCharacterData m_data;
@@ -35,6 +36,7 @@ public class MainCharacterController : MonoBehaviour
     {
         ReusableProperty.m_damageable.EventListenerRegister(_onDamageAction);
         _onDamageAction -= OnDamaged;
+        GameManager.Instance.OnCharacterDestroy();
     }
     // Update is called once per frame
     void Update()
@@ -80,7 +82,6 @@ public class MainCharacterController : MonoBehaviour
     }
     public void OnDamaged(int currentHealth, bool isDead)
     {
-        //TODO: Call Change to Dead state if isDead = true
         if (isDead)
         {
             _stateMachine.OnChangeState(_stateMachine.Dead);
