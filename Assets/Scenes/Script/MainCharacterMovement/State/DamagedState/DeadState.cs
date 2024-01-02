@@ -21,8 +21,8 @@ public class DeadState : BaseState
     }
     public override void OnExit()
     {
-        //GameObject.Destroy(_machine._controller.gameObject);
         base.OnExit();
+        GameObject.Destroy(_machine._controller.gameObject);
     }
     public override void OnMovement()
     {
