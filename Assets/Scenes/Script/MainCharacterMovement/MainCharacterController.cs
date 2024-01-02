@@ -29,8 +29,8 @@ public class MainCharacterController : MonoBehaviour
     }
     void Start()
     {
-        _stateMachine.OnChangeState(_stateMachine.Idle);
         ReusableProperty.m_damageable.EventListenerRegister(_onDamageAction);
+        OnSpawn();
     }
     void OnDestroy()
     {
@@ -88,6 +88,10 @@ public class MainCharacterController : MonoBehaviour
             return;
         }
         _stateMachine.OnChangeState(_stateMachine.Damaged);
+    }
+    public void OnSpawn()
+    {
+        _stateMachine.OnSpawn();
     }
 
 }
