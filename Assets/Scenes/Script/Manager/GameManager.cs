@@ -35,6 +35,7 @@ public class GameManager : PersistenceSingleton<GameManager>
         Debug.Log("Coroutine");
         yield return new WaitForSeconds(m_reSpawnWaitTime);
         SpawnNewCharacterInstance();
+        yield return null;
     }
     private void SpawnNewCharacterInstance()
     {
