@@ -21,6 +21,7 @@ public class MainCharacterMovementStateMachine : BaseStateMachine
     public WallJumpState WallJump {get; private set;}
     public DamageState Damaged {get; private set;}
     public DeadState Dead {get; private set;}
+    public RespawnState Respawn {get; private set;}
     #endregion
     public MainCharacterMovementStateMachine(MainCharacterController controller)
     {
@@ -45,6 +46,7 @@ public class MainCharacterMovementStateMachine : BaseStateMachine
         WallJump = new WallJumpState(this);
         Damaged = new DamageState(this);
         Dead = new DeadState(this);
+        Respawn = new RespawnState(this);
     }
     /// <summary>
     /// callback function on character is dead
@@ -67,6 +69,6 @@ public class MainCharacterMovementStateMachine : BaseStateMachine
     {
         //Debug.Log("Not Implemented " + nameof(OnSpawn));
         //TTODO: Change to respawn state here
-        OnChangeState(Idle);
+        OnChangeState(Respawn);
     }
 }
