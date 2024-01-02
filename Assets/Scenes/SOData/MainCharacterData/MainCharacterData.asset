@@ -49,8 +49,8 @@ MonoBehaviour:
   m_wallSlidingAccel: 2.5
   m_knockBackForce: {x: 5, y: 12}
   m_DamagedStateDuration: 0.55
-  m_DeadStateDuration: 1.6
-  m_reSpawnDuration: 0
+  m_DeadStateDuration: 1.306
+  m_reSpawnDuration: 2
   m_coyoteTime: 0.25
   m_jumpInputBufferTime: 0.15
   m_fastFallVFXObject: {fileID: 3590073949618736141, guid: a26a87372109a77448dc7dc4b9ee766d, type: 3}
