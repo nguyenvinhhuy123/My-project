@@ -8,4 +8,10 @@ AnimatorOverrideController:
   m_PrefabAsset: {fileID: 0}
   m_Name: CheckPointController
   m_Controller: {fileID: 9100000, guid: 41da389f1b1dc1a43a2695c37cf661e8, type: 2}
-  m_Clips: []
+  m_Clips:
+  - m_OriginalClip: {fileID: 7400000, guid: 84035ec51528045489d381686f16d502, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 552db2a2834fdb945adc17c83e077889, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 0ab9d0c3d35379d41833bedc303139a1, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: b16ef0556f8753f40925353b67d9fe0d, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: b00bf738e4767b24b8798b178ff5b622, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 3e5ee21bdb6c9004a809a8ef3adff188, type: 2}
