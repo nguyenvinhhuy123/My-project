@@ -36,7 +36,7 @@ public class MainCharacterController : MonoBehaviour
     {
         ReusableProperty.m_damageable.EventListenerRegister(_onDamageAction);
         _onDamageAction -= OnDamaged;
-        GameManager.Instance.OnCharacterDestroy();
+        PlayerManager.Instance?.CharacterDestroy();
     }
     // Update is called once per frame
     void Update()
@@ -91,6 +91,7 @@ public class MainCharacterController : MonoBehaviour
     }
     public void OnSpawn()
     {
+        PlayerManager.Instance?.CharacterSpawn(this);
         _stateMachine.OnSpawn();
     }
 
