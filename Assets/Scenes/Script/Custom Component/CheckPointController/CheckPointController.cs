@@ -25,10 +25,11 @@ public class CheckPointController : MonoBehaviour
             OnChecked();
         }
     }
-    void OnChecked()
+    private void OnChecked()
     {
         m_animator.SetBool(ANIMATOR_CHECKED_PARAM, true);
         //*Disable collider2D on Checked so that we can not checked a checkpoint multiple time
         m_collider2D.enabled = false;
+        PlayerManager.Instance.Checked(this);
     }
 }
