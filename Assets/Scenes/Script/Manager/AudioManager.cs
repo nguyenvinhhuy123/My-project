@@ -43,7 +43,14 @@ public class AudioManager : PersistenceSingleton<AudioManager>
 
     public void PlayBackGroundMusic(AudioClip background)
     {
-        m_backGroundMusicClip = background;
+        if (background)
+        {
+            m_backGroundMusicClip = background;
+        }
+        else 
+        {
+            m_backGroundMusicClip = m_defaultBackGroundMusicClip;
+        }
         m_backGroundMusicSource.loop = true;
         m_backGroundMusicSource.Play();
     }
