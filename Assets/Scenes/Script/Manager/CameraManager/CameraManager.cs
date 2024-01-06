@@ -5,7 +5,7 @@ using Cinemachine;
 
 public class CameraManager : MonoBehaviour
 {
-    private MainCharacterController m_lookAtTarget;
+    private MainCharacterController m_followTarget;
     private CinemachineVirtualCamera m_virtualCamera;
     void Awake() {
         m_virtualCamera = GetComponent<CinemachineVirtualCamera>();
@@ -15,15 +15,16 @@ public class CameraManager : MonoBehaviour
     {
         
     }
-
     // Update is called once per frame
     void Update()
     {
-        
+
     }
-    public void SetLookAtTarget(MainCharacterController character)
+    public void SetFollowTarget(MainCharacterController character)
     {
-        if (m_lookAtTarget) return;
-        m_lookAtTarget = character;
+        if (m_followTarget) return;
+        m_followTarget = character;
+
+        m_virtualCamera.Follow = m_followTarget.gameObject.transform;
     }
 }
