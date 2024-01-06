@@ -17,6 +17,7 @@ public class WallJumpState : AirborneState
         _machine._sharedData.LastOnWallTime = 0f;
         _machine._sharedData.OnWallJumpMovementRestrictedTime = _machine._data.m_wallJumpMovementConstraintTime;
         _lastWallContactDirection = _machine._sharedData.WallContactDirection;
+        AudioManager.Instance.PlaySFX(_machine._data.m_jumpSFXEffect);
         OnWallJump();
     }
     private void OnWallJump()
