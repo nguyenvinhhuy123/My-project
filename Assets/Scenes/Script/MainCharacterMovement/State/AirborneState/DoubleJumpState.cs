@@ -15,6 +15,7 @@ public class DoubleJumpState : AirborneState
         _machine._sharedData.OnJumpPressBufferTime = 0f;
         _machine._sharedData.LastOnGroundTime = 0f;
         _machine._sharedData.CanDoubleJump = false;
+        AudioManager.Instance.PlaySFX(_machine._data.m_jumpSFXEffect);
         OnDoubleJump();
     }
     public override void OnExit()
