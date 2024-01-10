@@ -39,17 +39,17 @@ public class PlayerManager : PersistenceSingleton<PlayerManager>
     }
     public void CharacterDestroy()
     {
-        gameObject.BroadcastMessage("OnCharacterDestroy", SendMessageOptions.DontRequireReceiver);
+        gameObject?.BroadcastMessage("OnCharacterDestroy", SendMessageOptions.DontRequireReceiver);
         m_onCharacterDestroyEvent.Invoke();
     }
     public void CharacterSpawn(MainCharacterController character)
     {  
-        gameObject.BroadcastMessage("OnCharacterSpawn", character, SendMessageOptions.DontRequireReceiver);
+        gameObject?.BroadcastMessage("OnCharacterSpawn", character, SendMessageOptions.DontRequireReceiver);
         m_onCharacterSpawnEvent.Invoke(character);
     }
     public void Checked(CheckPointController checkPoint)
     {
-        gameObject.BroadcastMessage("OnChecked", checkPoint, SendMessageOptions.DontRequireReceiver);
+        gameObject?.BroadcastMessage("OnChecked", checkPoint, SendMessageOptions.DontRequireReceiver);
         m_onCheckedEvent.Invoke(checkPoint);
     }
     private void OnCharacterSpawn(MainCharacterController character)
