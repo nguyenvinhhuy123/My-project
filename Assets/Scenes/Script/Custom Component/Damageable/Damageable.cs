@@ -22,7 +22,7 @@ public class Damageable : MonoBehaviour
     {
         m_attachedGO = gameObject;
         m_damagedEvent = new UnityEvent<int, bool>();
-        onResetHealth();
+        OnResetHealth();
     }
     void Update()
     {
@@ -32,7 +32,7 @@ public class Damageable : MonoBehaviour
     /// <summary>
     /// Reset this obj current health to max_health
     /// </summary>
-    public void onResetHealth()
+    public void OnResetHealth()
     {
         m_CurrentHealth = m_Health;
     } 
