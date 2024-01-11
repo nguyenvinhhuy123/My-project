@@ -42,10 +42,10 @@ public class PlayerHealthbarManager : MonoBehaviour
     private void OnCharacterSpawn(MainCharacterController character)
     {
         character.gameObject.TryGetComponent<Damageable>(out m_cachePlayerDamageable);
-        m_cachePlayerDamageable.EventListenerRegister(m_onDamagedAction);
+        m_cachePlayerDamageable.DamagedEventListenerRegister(m_onDamagedAction);
     }
     private void OnCharacterDestroy()
     {
-        
+
     }
 }

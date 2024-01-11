@@ -29,12 +29,12 @@ public class MainCharacterController : MonoBehaviour
     }
     void Start()
     {
-        ReusableProperty.m_damageable.EventListenerRegister(_onDamageAction);
+        ReusableProperty.m_damageable.DamagedEventListenerRegister(_onDamageAction);
         OnSpawn();
     }
     void OnDestroy()
     {
-        ReusableProperty.m_damageable.EventListenerRegister(_onDamageAction);
+        ReusableProperty.m_damageable.DamagedEventListenerRegister(_onDamageAction);
         _onDamageAction -= OnDamaged;
         PlayerManager.Instance?.CharacterDestroy();
     }
