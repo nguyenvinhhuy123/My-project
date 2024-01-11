@@ -17,7 +17,7 @@ public class Damageable : MonoBehaviour
     /*
     *m_damageEvent<currentHealth: int, isDead_:bool>
     */
-    private UnityEvent<int, bool> m_damagedEvent;
+    private UnityEvent<int, bool> m_onDamagedEvent;
 
     /*
     *m_healEvent<currentHealth: int>
@@ -26,7 +26,7 @@ public class Damageable : MonoBehaviour
     void Awake()
     {
         m_attachedGO = gameObject;
-        m_damagedEvent = new UnityEvent<int, bool>();
+        m_onDamagedEvent = new UnityEvent<int, bool>();
         ResetHealth();
     }
     void Update()
@@ -36,7 +36,7 @@ public class Damageable : MonoBehaviour
     }
     void OnDestroy()
     {
-        m_damagedEvent.RemoveAllListeners();
+        m_onDamagedEvent.RemoveAllListeners();
     }
     /// <summary>
     /// Reset this obj current health to max_health
@@ -46,7 +46,7 @@ public class Damageable : MonoBehaviour
         m_CurrentHealth = m_Health;
     } 
     /// <summary>
-    /// Call back when receive dmg from outer source
+    /// Method to call when damage this damageable from outer source
     /// </summary>
     /// <param name="inputDamage">taken damage</param>
     /// <param name="source">dmg source</param>
@@ -63,11 +63,15 @@ public class Damageable : MonoBehaviour
             m_CurrentHealth = 0;
             isDead =true;
         }
-        m_damagedEvent.Invoke(m_CurrentHealth, isDead);
+        m_onDamagedEvent.Invoke(m_CurrentHealth, isDead);
         if (isDead) return;
         m_IFrameTimer = m_IFrameTime;
         StartCoroutine(IFrame(source.gameObject.layer));
     }
+    /// <summary>
+    /// Method to call when heal this damageable from outer source
+    /// </summary>
+    /// <param name="healAmount"> amount of input healing</param>
     public void Heal(int healAmount)
     {
         m_CurrentHealth += healAmount;
@@ -97,7 +101,8 @@ public class Damageable : MonoBehaviour
     /// <param name="act"></param>Listener Action need to register<summary>
     public void DamagedEventListenerRegister(UnityAction<int, bool> act)
     {
-        m_damagedEvent.AddListener(act);
+        if (act == null) return;
+        m_onDamagedEvent.AddListener(act);
     }
     /// <summary>
     /// unregister UnityAction for damagedEvent
@@ -106,6 +111,27 @@ public class Damageable : MonoBehaviour
     /// <param name="act"></param>Listener Action need to register<summary>
     public void DamagedEventListenerUnregister(UnityAction<int, bool> act)
     {
-        m_damagedEvent.RemoveListener(act);
+        if (act == null) return;
+        m_onDamagedEvent.RemoveListener(act);
+    }
+    /// <summary>
+    /// register UnityAction for onHealEvent
+    /// Event Invoke will return int currentHealth
+    /// </summary>
+    /// <param name="act">action to register</param>
+    public void HealEventListenerRegister(UnityAction<int> act)
+    {
+        if (act == null) return;
+        m_onHealEvent.AddListener(act);
+    }
+    /// <summary>
+    /// Unregister UnityAction for onHealEvent
+    /// Event Invoke will return int currentHealth
+    /// </summary>
+    /// <param name="act"></param>action to cancel register<summary>
+    public void HealEventListenerUnRegister(UnityAction<int> act)
+    {
+        if (act == null) return;
+        m_onHealEvent.RemoveListener(act);
     }
 }
