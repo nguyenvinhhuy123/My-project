@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Utilities;
 using UnityEngine.InputSystem;
+using System;
 
 public class RunState : GroundState
 {
@@ -32,7 +33,8 @@ public class RunState : GroundState
     }
     public override void StateCondition()
     {
-        if (_machine._reusableProperty.m_rigidBody2D.velocity.x == 0f
+        if (_machine._reusableProperty.m_rigidBody2D.velocity.x > -0.01f
+        && _machine._reusableProperty.m_rigidBody2D.velocity.x < 0.01f
         && _machine._sharedData.MovementInput == 0)
         {
             _machine.OnChangeState(_machine.Idle);

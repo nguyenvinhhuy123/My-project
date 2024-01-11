@@ -92,12 +92,12 @@ public class BaseState : IState
     public virtual void SpriteFlip()
     {
         if (_machine._reusableProperty.m_rigidBody2D.velocity.x == 0f) return;
-        if (_machine._reusableProperty.m_rigidBody2D.velocity.x > 0f ) 
+        if (_machine._reusableProperty.m_rigidBody2D.velocity.x > 0.01f ) 
         {
             _machine._reusableProperty.m_spriteRenderer.flipX = false;
             return;
         }
-        if (_machine._reusableProperty.m_rigidBody2D.velocity.x < 0f ) 
+        if (_machine._reusableProperty.m_rigidBody2D.velocity.x < -0.01f ) 
         {
             _machine._reusableProperty.m_spriteRenderer.flipX = true;
             return;
