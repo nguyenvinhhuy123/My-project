@@ -7,9 +7,7 @@ public class DamageSource2D : MonoBehaviour
 {
     [SerializeField] private int m_Damage;
     public int Damage {get {return m_Damage;} set {m_Damage = value;}}
-
     private GameObject m_attachedGO;
-
     private UnityEvent<int> dealDamageEvent;
     // Start is called before the first frame update
     void Awake() 
