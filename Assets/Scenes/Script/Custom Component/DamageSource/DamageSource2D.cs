@@ -44,7 +44,7 @@ public class DamageSource2D : MonoBehaviour
         //TODO: Collision mechanism connected to Damagaeble
         if (other.gameObject.TryGetComponent<Damageable>(out Damageable damageable))
         {
-            damageable.OnDamaged(m_Damage, gameObject.GetComponent<DamageSource2D>());
+            damageable.Damaged(m_Damage, gameObject.GetComponent<DamageSource2D>());
         }
     }
     //TODO: ACtion register
