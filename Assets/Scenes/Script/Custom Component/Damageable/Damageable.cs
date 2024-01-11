@@ -34,10 +34,8 @@ public class Damageable : MonoBehaviour
         //Update timer call for IFrameTimer
         m_IFrameTimer -= Time.deltaTime; 
     }
-    void OnDestroy()
+    void OnDisable()
     {
-        m_onDamagedEvent.RemoveAllListeners();
-        m_onHealEvent.RemoveAllListeners();
     }
     /// <summary>
     /// Reset this obj current health to max_health
