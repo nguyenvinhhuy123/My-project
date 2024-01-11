@@ -7,8 +7,6 @@ public class PlayerHealthbarManager : MonoBehaviour
 {
     private Damageable m_cachePlayerDamageable;
     //TODO: Health UI ref here
-    private UnityAction m_onCharacterDestroyAction;
-    private UnityAction<MainCharacterController> m_onCharacterSpawnAction;
     private UnityAction<int, bool> m_onDamagedAction;
     // Start is called before the first frame update
     void Awake()
@@ -22,14 +20,10 @@ public class PlayerHealthbarManager : MonoBehaviour
     void OnEnable()
     {
         m_onDamagedAction += OnDamage;
-        m_onCharacterSpawnAction += OnCharacterSpawn;
-        m_onCharacterDestroyAction += OnCharacterDestroy;
     }
     void OnDisable()
     {
         m_onDamagedAction -= OnDamage;
-        m_onCharacterSpawnAction -= OnCharacterSpawn;
-        m_onCharacterDestroyAction -= OnCharacterDestroy;
     }
     // Update is called once per frame
     void Update()
@@ -48,9 +42,10 @@ public class PlayerHealthbarManager : MonoBehaviour
     private void OnCharacterSpawn(MainCharacterController character)
     {
         character.gameObject.TryGetComponent<Damageable>(out m_cachePlayerDamageable);
+        m_cachePlayerDamageable.EventListenerRegister(m_onDamagedAction);
     }
     private void OnCharacterDestroy()
     {
-        m_cachePlayerDamageable = null;
+        
     }
 }
