@@ -18,21 +18,30 @@ public class Damageable : MonoBehaviour
     *m_damageEvent<currentHealth: int, isDead_:bool>
     */
     private UnityEvent<int, bool> m_damagedEvent;
+
+    /*
+    *m_healEvent<currentHealth: int>
+    */
+    private UnityEvent<int> m_onHealEvent;
     void Awake()
     {
         m_attachedGO = gameObject;
         m_damagedEvent = new UnityEvent<int, bool>();
-        OnResetHealth();
+        ResetHealth();
     }
     void Update()
     {
         //Update timer call for IFrameTimer
         m_IFrameTimer -= Time.deltaTime; 
     }
+    void OnDestroy()
+    {
+        m_damagedEvent.RemoveAllListeners();
+    }
     /// <summary>
     /// Reset this obj current health to max_health
     /// </summary>
-    public void OnResetHealth()
+    public void ResetHealth()
     {
         m_CurrentHealth = m_Health;
     } 
@@ -41,7 +50,7 @@ public class Damageable : MonoBehaviour
     /// </summary>
     /// <param name="inputDamage">taken damage</param>
     /// <param name="source">dmg source</param>
-    public void OnDamaged(int inputDamage, DamageSource2D source)
+    public void Damaged(int inputDamage, DamageSource2D source)
     {
         bool isDead = false;
         if (m_IFrameTimer >= 0f)
@@ -58,6 +67,16 @@ public class Damageable : MonoBehaviour
         if (isDead) return;
         m_IFrameTimer = m_IFrameTime;
         StartCoroutine(IFrame(source.gameObject.layer));
+    }
+    public void Heal(int healAmount)
+    {
+        m_CurrentHealth += healAmount;
+        if (m_CurrentHealth >= m_Health)
+        {
+            ResetHealth();
+        }
+        m_onHealEvent.Invoke(m_CurrentHealth);
+
     }
     /// <summary>
     /// IFrame coroutine callback
