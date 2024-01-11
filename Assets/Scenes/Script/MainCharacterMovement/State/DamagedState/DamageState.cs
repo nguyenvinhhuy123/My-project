@@ -26,10 +26,6 @@ public class DamageState : BaseState
     {
         base.OnUpdate();
     }
-    public override void OnMovement()
-    {
-        //let empty instead of calling base OnMovement by default
-    }
     private void OnKnockBack()
     {
         /*
@@ -42,7 +38,8 @@ public class DamageState : BaseState
             knockBackXDirection*_machine._data.m_knockBackForce.x, 
             _machine._data.m_knockBackForce.y);
         
-        _machine._reusableProperty.m_rigidBody2D.velocity = targetKnockBackForce;
+        _machine._reusableProperty.m_rigidBody2D.velocity.Set(0f,0f);
+        _machine._reusableProperty.m_rigidBody2D.AddForce(targetKnockBackForce, ForceMode2D.Impulse);
     }
     public override void StateCondition()
     {

@@ -9,14 +9,14 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6749592665140936064}
-  - component: {fileID: 6749592665140936070}
+  - component: {fileID: 1683266260}
   - component: {fileID: 6749592665140936065}
   - component: {fileID: 6749592665140936071}
   - component: {fileID: 6749592665140936068}
+  - component: {fileID: 1683266259}
   - component: {fileID: 6749592665140936090}
   - component: {fileID: 6749592665140936091}
-  - component: {fileID: 6749592665140936088}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: MainCharacter
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -30,7 +30,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6749592665140936067}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -3.69, y: 1.58, z: 0}
   m_LocalScale: {x: 5, y: 5, z: 1}
   m_ConstrainProportionsScale: 0
@@ -38,7 +38,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!50 &6749592665140936070
+--- !u!50 &1683266260
 Rigidbody2D:
   serializedVersion: 4
   m_ObjectHideFlags: 0
@@ -157,6 +157,19 @@ SpriteRenderer:
   m_WasSpriteAssigned: 0
   m_MaskInteraction: 2
   m_SpriteSortPoint: 0
+--- !u!114 &1683266259
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6749592665140936067}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cbaa4c117b64ad84c90480d9cbf3d76f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_data: {fileID: 11400000, guid: 3de897859be607a439459df63c357d71, type: 2}
 --- !u!114 &6749592665140936090
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -184,7 +197,7 @@ MonoBehaviour:
   m_ActionEvents:
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 6749592665140936088}
+      - m_Target: {fileID: 1683266259}
         m_TargetAssemblyTypeName: MainCharacterController, Assembly-CSharp
         m_MethodName: OnMovement
         m_Mode: 0
@@ -200,7 +213,7 @@ MonoBehaviour:
     m_ActionName: PlayerActionMap/Movement[/Keyboard/a,/Keyboard/d,/Keyboard/leftArrow,/Keyboard/rightArrow]
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 6749592665140936088}
+      - m_Target: {fileID: 1683266259}
         m_TargetAssemblyTypeName: MainCharacterController, Assembly-CSharp
         m_MethodName: OnJump
         m_Mode: 0
@@ -216,7 +229,7 @@ MonoBehaviour:
     m_ActionName: PlayerActionMap/Jump[/Keyboard/space]
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 6749592665140936088}
+      - m_Target: {fileID: 1683266259}
         m_TargetAssemblyTypeName: MainCharacterController, Assembly-CSharp
         m_MethodName: OnFastFall
         m_Mode: 0
@@ -250,16 +263,3 @@ MonoBehaviour:
   m_Health: 100
   m_CurrentHealth: 0
   m_IFrameTime: 1
---- !u!114 &6749592665140936088
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6749592665140936067}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cbaa4c117b64ad84c90480d9cbf3d76f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_data: {fileID: 11400000, guid: 3de897859be607a439459df63c357d71, type: 2}

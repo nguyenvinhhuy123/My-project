@@ -25,9 +25,36 @@ public class BaseMovementState : BaseState
     {
         base.OnUpdate();
     }
-    public override void OnMovement()
+    public override void OnFixedUpdate()
     {
-        base.OnMovement();
+        base.OnFixedUpdate();
+        OnMovement();
+        
+    }
+    public virtual void OnMovement()
+    {
+        float targetSpeed = _machine._sharedData.MovementInput * _machine._data.m_runMaxSpeed;
+
+        float accel;
+        accel = (Mathf.Abs(targetSpeed) > 0.01f) ? _machine._data.m_realAccel : _machine._data.m_realDeccel;    
+
+        //Whenever our player moves faster than our maxSpeed (due to speed buff/push mechanism), 
+        //We do not want to reduce our player Speed to the Clamp so fast
+        //This give player a chance to create a hyper speed boost situation more freely
+        if (
+            (Mathf.Abs(_machine._reusableProperty.m_rigidBody2D.velocity.x) > Mathf.Abs(targetSpeed))
+        &&  (Mathf.Sign(_machine._reusableProperty.m_rigidBody2D.velocity.x) == Mathf.Sign(targetSpeed))
+        && (MathF.Abs(targetSpeed) > 0.01f)
+        )
+        {
+            accel *= _machine._data.HyperSpeedDeccelMultiplier;
+            Debug.Log("Hyper Speed");
+        }
+        float amountToReachTargetSpeed = targetSpeed - _machine._reusableProperty.m_rigidBody2D.velocity.x;
+
+        float realForceToAdd = amountToReachTargetSpeed * accel;
+
+        _machine._reusableProperty.m_rigidBody2D.AddForce(realForceToAdd*Vector2.right, ForceMode2D.Force);
     }
     public override void StateCondition()
     {

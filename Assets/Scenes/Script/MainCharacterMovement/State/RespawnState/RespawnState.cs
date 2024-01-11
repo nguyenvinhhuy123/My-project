@@ -18,10 +18,6 @@ public class RespawnState : BaseState
     {
         _reSpawnStateDurationTimer -= Time.deltaTime;
     }
-    public override void OnMovement()
-    {
-        //*let empty instead of calling base OnMovement by default
-    }
     public override void SpriteFlip()
     {
         //*Keep empty instead of calling base */

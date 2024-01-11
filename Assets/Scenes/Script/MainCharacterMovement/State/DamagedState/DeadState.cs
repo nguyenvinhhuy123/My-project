@@ -24,10 +24,6 @@ public class DeadState : BaseState
         base.OnExit();
         GameObject.Destroy(_machine._controller.gameObject);
     }
-    public override void OnMovement()
-    {
-        //*let empty instead of calling base OnMovement by default
-    }
     public override void SpriteFlip()
     {
         //*Keep empty instead of calling base */
