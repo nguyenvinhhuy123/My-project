@@ -37,6 +37,7 @@ public class Damageable : MonoBehaviour
     void OnDestroy()
     {
         m_onDamagedEvent.RemoveAllListeners();
+        m_onHealEvent.RemoveAllListeners();
     }
     /// <summary>
     /// Reset this obj current health to max_health
