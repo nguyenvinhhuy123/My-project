@@ -3,11 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using Utilities;
 using UnityEngine.UI;
+using System;
 
 public class PlayerHealthBarUI : Singleton<PlayerHealthBarUI>
 {
     private Slider m_healthBarUI;
     private int m_cacheCurrentHealthValue;
+    [SerializeField][Range(1,5)] private int m_sliderChangeLerpAmount = 2;
+    [SerializeField] private float m_sliderChangeLerpTime = 0.02f;
     protected override void Awake()
     {
         base.Awake();
@@ -27,8 +30,14 @@ public class PlayerHealthBarUI : Singleton<PlayerHealthBarUI>
     {
         m_healthBarUI.value = m_healthBarUI.maxValue;
     }
-    private IEnumerator ValueChange(int targetValue, int currentValue)
+    private IEnumerator SliderHealthChangeLerp(int targetValue, int startValue)
     {
-        yield return null;
+        int currentValue = startValue;
+        if (currentValue == targetValue) yield break;
+
+        currentValue -= m_sliderChangeLerpAmount;
+        m_healthBarUI.value = currentValue;
+
+        yield return new WaitForSeconds(m_sliderChangeLerpTime);
     }
 }

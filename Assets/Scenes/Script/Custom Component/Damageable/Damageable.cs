@@ -36,6 +36,7 @@ public class Damageable : MonoBehaviour
     }
     void OnDisable()
     {
+        
     }
     /// <summary>
     /// Reset this obj current health to max_health
