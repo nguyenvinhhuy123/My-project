@@ -763,6 +763,7 @@ GameObject:
   - component: {fileID: 798364702}
   - component: {fileID: 798364703}
   - component: {fileID: 798364704}
+  - component: {fileID: 798364705}
   m_Layer: 5
   m_Name: PlayerHealthBar
   m_TagString: Untagged
@@ -855,8 +856,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 46c0f0266b000ed49af65c1464cad26a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_sliderChangeLerpAmount: 4
-  m_sliderChangeLerpTime: 0.02
+  m_sliderChangeLerpAmount: 2
+  m_sliderChangeLerpTimeSeconds: 0.02
+--- !u!114 &798364705
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 798364701}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ea4097f8db182dd46a6ef88802072085, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &858114521
 GameObject:
   m_ObjectHideFlags: 0
@@ -5157,7 +5170,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1921411506}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 12.585866, y: 2.2690065, z: -10}
+  m_LocalPosition: {x: 12.797652, y: 1.9781168, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
