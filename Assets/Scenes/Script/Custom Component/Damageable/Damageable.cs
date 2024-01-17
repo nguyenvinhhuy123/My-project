@@ -27,6 +27,7 @@ public class Damageable : MonoBehaviour
     {
         m_attachedGO = gameObject;
         m_onDamagedEvent = new UnityEvent<int, bool>();
+        m_onHealEvent = new UnityEvent<int>();
         ResetHealth();
     }
     void Update()

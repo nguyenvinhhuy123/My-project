@@ -9,10 +9,11 @@ public class PlayerHealthbarManager : MonoBehaviour
     //TODO: Health UI ref here
     private UnityAction<int, bool> m_onDamagedAction;
     private UnityAction<int> m_onHealAction;
+    private PlayerHealthBarUI m_cacheHealthBarUI;
     // Start is called before the first frame update
     void Awake()
     {
-        
+        m_cacheHealthBarUI = FindFirstObjectByType<PlayerHealthBarUI>();
     }
     void Start()
     {
@@ -38,19 +39,25 @@ public class PlayerHealthbarManager : MonoBehaviour
         //TODO: call healthbar change
         if (isDead)
         {
-
+            m_cacheHealthBarUI.AdjustHealthValue(currentHealth);
+            //TODO: Maybe some UI animation on dead here
+            return;
         }
+        m_cacheHealthBarUI.AdjustHealthValue(currentHealth);
 
     }
     private void OnHeal(int currentHealth)
     {
-
+        m_cacheHealthBarUI.AdjustHealthValue(currentHealth);
     }
     private void OnCharacterSpawn(MainCharacterController character)
     {
         character.gameObject.TryGetComponent<Damageable>(out m_cachePlayerDamageable);
         m_cachePlayerDamageable.DamagedEventListenerRegister(m_onDamagedAction);
         m_cachePlayerDamageable.HealEventListenerRegister(m_onHealAction);
+
+        m_cacheHealthBarUI.SetMaxHealthValue(m_cachePlayerDamageable.Health);
+        m_cacheHealthBarUI.ResetHealthValue();
     }
     private void OnCharacterDestroy()
     {
