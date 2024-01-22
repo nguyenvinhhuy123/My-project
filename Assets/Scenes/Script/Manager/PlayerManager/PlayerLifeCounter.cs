@@ -5,8 +5,8 @@ using UnityEngine;
 [RequireComponent(typeof(PlayerManager))]
 public class PlayerLifeCounter : MonoBehaviour
 {
-    [SerializeField] private int m_characterLife;
-    public int CharacterLife {get {return m_characterLife;}}
+    [SerializeField] private int m_characterMaxLife;
+    public int CharacterMaxLife {get {return m_characterMaxLife;}}
     private int m_lifeCounter;
     // Start is called before the first frame update
     void Start()
@@ -18,7 +18,7 @@ public class PlayerLifeCounter : MonoBehaviour
     {
         
     }
-    public void OnCharacterDestroy()
+    private void OnCharacterDestroy()
     {
         m_lifeCounter--;
         if (m_lifeCounter == 0)
@@ -28,12 +28,21 @@ public class PlayerLifeCounter : MonoBehaviour
     }
     public void ResetCounter()
     {
-        m_lifeCounter = m_characterLife;
+        m_lifeCounter = m_characterMaxLife;
     }
-    public void OnNoMoreLife()
+    private void OnNoMoreLife()
     {
         //TODO: Call OnGameOver Event
         Debug.Log("Out of Life");
         return;
+    }
+    public void AddLife()
+    {
+        m_lifeCounter++; 
+        if (m_lifeCounter >= CharacterMaxLife) 
+        {
+            m_lifeCounter = CharacterMaxLife;
+            return;
+        }
     }
 }
