@@ -10,4 +10,12 @@ public class GameManager : PersistenceSingleton<GameManager>
     }
     private void Start() {
     }
+    private void OnGameOver()
+    {
+
+    }
+    private void OnPause()
+    {
+        
+    }
 }
