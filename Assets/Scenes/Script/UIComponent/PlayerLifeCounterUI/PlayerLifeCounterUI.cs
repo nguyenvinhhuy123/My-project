@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class PlayerLifeCounterUI : Singleton<PlayerLifeCounterUI>
 {
     public static readonly int MAX_RENDER_LIFE_ICON = 10;
-    private GameObject[] m_LifeIconList = new GameObject[MAX_RENDER_LIFE_ICON]; 
+    private LifeIconUI[] m_LifeIconList = new LifeIconUI[MAX_RENDER_LIFE_ICON]; 
     private int m_currentIndex = 0;
     [SerializeField] private GameObject m_LifeIconPrefab;
     [SerializeField] private int m_iconDistance;
@@ -36,7 +36,8 @@ public class PlayerLifeCounterUI : Singleton<PlayerLifeCounterUI>
             return;
         }
         Vector3 target_position = new Vector3(m_currentIndex*m_iconDistance,0,0);
-        m_LifeIconList[m_currentIndex] = Instantiate(m_LifeIconPrefab,this.transform, false);
+        m_LifeIconList[m_currentIndex] = Instantiate(m_LifeIconPrefab,this.transform, false)
+                                        .GetComponent<LifeIconUI>();
         m_LifeIconList[m_currentIndex].transform.localPosition = target_position;
         Debug.Log(this.transform);
         m_currentIndex++;
@@ -52,9 +53,9 @@ public class PlayerLifeCounterUI : Singleton<PlayerLifeCounterUI>
             return;
         }
         m_currentIndex--;
-        //Play Animation
-        //Wait for animation end -> destroy //hade code wait 3 sec
-        Destroy(m_LifeIconList[m_currentIndex]);
+        //**/
+        m_LifeIconList[m_currentIndex].RemoveSelf();
+        m_LifeIconList[m_currentIndex] = null;
     }
     /// <summary>
     /// Set the number of icons to number of life currently have
