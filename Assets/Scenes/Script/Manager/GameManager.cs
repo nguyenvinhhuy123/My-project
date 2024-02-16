@@ -14,8 +14,12 @@ public class GameManager : PersistenceSingleton<GameManager>
     {
 
     }
-    private void OnPause()
+    public void PauseGame()
     {
-        
+        Time.timeScale = 0f;
+    }
+    public void UnPauseGame()
+    {
+        Time.timeScale = 1f;
     }
 }

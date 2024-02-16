@@ -56,6 +56,7 @@ public class PlayerLifeCounterUI : Singleton<PlayerLifeCounterUI>
         //**/
         m_LifeIconList[m_currentIndex].RemoveSelf();
         m_LifeIconList[m_currentIndex] = null;
+        
     }
     /// <summary>
     /// Set the number of icons to number of life currently have
