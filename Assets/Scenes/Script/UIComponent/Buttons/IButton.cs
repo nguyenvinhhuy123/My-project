@@ -1,11 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
-public interface IButton
+public interface IButton : ISelectHandler
 {
-    #region Button Animation Name String
-    #endregion
     void OnClick();
     void OnHover();
     void OnExitHover();

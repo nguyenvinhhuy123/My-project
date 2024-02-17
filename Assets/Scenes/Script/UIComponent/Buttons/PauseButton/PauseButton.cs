@@ -11,4 +11,8 @@ public class PauseButton : BaseButton
         if (!GameManager.Instance.IsPause) GameManager.Instance.PauseGame();
         else  GameManager.Instance.UnPauseGame();
     }
+    public void Press()
+    {   
+        Debug.Log("Pressed");
+    }
 }
