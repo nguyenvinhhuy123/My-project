@@ -8,11 +8,20 @@ public class PauseButton : BaseButton
     public override void OnClick()
     {
         base.OnClick();
-        if (!GameManager.Instance.IsPause) GameManager.Instance.PauseGame();
-        else  GameManager.Instance.UnPauseGame();
+        if (!GameManager.Instance.IsPause) PauseGameClicked();
+        else UnPauseGameClicked();
     }
     public void Press()
     {   
         Debug.Log("Pressed");
+    }
+    void PauseGameClicked(){
+        GameManager.Instance.PauseGame();
+        PauseMenu.Instance.OpenPanel();
+    }
+    void UnPauseGameClicked()
+    {
+        GameManager.Instance.UnPauseGame();
+        PauseMenu.Instance.ClosePanel();
     }
 }
