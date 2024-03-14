@@ -364,7 +364,7 @@ GameObject:
   - component: {fileID: 419181625}
   - component: {fileID: 419181626}
   m_Layer: 5
-  m_Name: Volumn
+  m_Name: Volume
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5965,6 +5965,7 @@ MonoBehaviour:
   m_SFXSource: {fileID: 1238654128}
   m_backGroundMusicSource: {fileID: 648335800}
   m_defaultBackGroundMusicClip: {fileID: 0}
+  m_testSoundClip: {fileID: 8300000, guid: 007dec1d3b15bfc44b889793925642c8, type: 3}
 --- !u!1 &1578685131
 GameObject:
   m_ObjectHideFlags: 0
@@ -6745,7 +6746,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Volumn
+  m_text: 'Volume
 
 '
   m_isRightToLeft: 0
