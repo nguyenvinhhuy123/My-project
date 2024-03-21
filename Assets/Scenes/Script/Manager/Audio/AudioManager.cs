@@ -5,7 +5,7 @@ using Utilities;
 
 public class AudioManager : PersistenceSingleton<AudioManager>
 {
-    private VolumeManager _volumeManager;
+    private VolumeManager m_volumeManager;
     [SerializeField] private AudioSource m_SFXSource;
     [SerializeField] private  AudioSource m_backGroundMusicSource;
     [SerializeField] private AudioClip m_defaultBackGroundMusicClip;
@@ -30,7 +30,6 @@ public class AudioManager : PersistenceSingleton<AudioManager>
         set
         {
             m_SFXSource.volume = value;
-            PlayTestSound();
         }
     }
     public AudioClip m_SFXClip
@@ -55,12 +54,13 @@ public class AudioManager : PersistenceSingleton<AudioManager>
             m_backGroundMusicSource.clip = value;
         }
     }
+    public VolumeManager VolumeManager {get {return m_volumeManager;}}
     protected override void Awake()
     {
         base.Awake();
-        if (!gameObject.TryGetComponent<VolumeManager>(out _volumeManager))
+        if (!gameObject.TryGetComponent<VolumeManager>(out m_volumeManager))
         {
-            _volumeManager = gameObject.AddComponent<VolumeManager>();
+            m_volumeManager = gameObject.AddComponent<VolumeManager>();
         }
     } 
     public void PlaySFX(AudioClip sfx)
@@ -81,7 +81,7 @@ public class AudioManager : PersistenceSingleton<AudioManager>
         m_backGroundMusicSource.loop = true;
         m_backGroundMusicSource.Play();
     }
-    void PlayTestSound()
+    public void PlayTestSound()
     {
         m_SFXSource.PlayOneShot(m_testSoundClip);
     }
