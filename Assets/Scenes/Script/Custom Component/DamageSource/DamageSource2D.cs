@@ -3,14 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
+[RequireComponent(typeof(Collider))]
 public class DamageSource2D : MonoBehaviour
 {
     [SerializeField] private int m_Damage;
-    public int Damage {get {return m_Damage;} set {m_Damage = value;}}
+    public int Damage { get { return m_Damage; } set { m_Damage = value; } }
     private GameObject m_attachedGO;
     private UnityEvent<int> dealDamageEvent;
     // Start is called before the first frame update
-    void Awake() 
+    void Awake()
     {
         m_attachedGO = gameObject;
         dealDamageEvent = new UnityEvent<int>();
@@ -18,6 +19,12 @@ public class DamageSource2D : MonoBehaviour
     void Start()
     {
         m_attachedGO = gameObject;
+        Collider[] ParentColliders = this.gameObject.GetComponentsInParent<Collider>();
+        //* Ignore all collider in parent, preventing a dmg source from dmg itself */
+        foreach (Collider col in ParentColliders)
+        {
+            Physics.IgnoreCollision(this.gameObject.GetComponent<Collider>(), col);
+        }
     }
     /// <summary>
     /// register UnityAction for dealDamageEvent
@@ -39,11 +46,13 @@ public class DamageSource2D : MonoBehaviour
     }
     void OnCollisionEnter2D(Collision2D other)
     {
-        //TODO: Collision mechanism connected to Damagaeble
-        if (other.gameObject.TryGetComponent<Damageable>(out Damageable damageable))
+        other.gameObject.TryGetComponent<Damageable>(out Damageable damageable);
+        if (damageable == null)
         {
-            damageable.Damaged(m_Damage, gameObject.GetComponent<DamageSource2D>());
+            Debug.Log("Collider is not of Damageable type");
+            return;
         }
+        damageable.Damaged(m_Damage, this);
     }
-    //TODO: ACtion register
+
 }
